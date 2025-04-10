@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'inclusive_map',
-        'USER': 'postgres',
-        'PASSWORD': 'password', # very HARD password
-        'HOST': 'db',
-        'PORT': '5432',
-    }
+    # 'default': {#це тупо я закоментував бо поки не маю доступу до бази даних
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'inclusive_map',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'password', # very HARD password
+    #     'HOST': 'db',
+    #     'PORT': '5432',
+    # }
 }
 
 
