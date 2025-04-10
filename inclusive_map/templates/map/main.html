@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Places</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo">Main</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>🔍</button>
+    </div>
+    <div class="nav-links">
+      <button>FIND PLACES</button>
+      <button>ROUTES</button>
+      <button>REVIEWS</button>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="filter-btn">VISION IMPAIRMENT</button>
+    <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
+    <button class="filter-btn active">TACTILE ELEMENT</button>
+    <button class="filter-btn" style="border: 2px solid black; background: #ddd;">EASY ENTRANCE</button>
+  </div>
+  <div class="container">
+    <div id="map"></div>
+    <div class="places-list" id="places"></div>
+    <div class="details-panel" id="details">
+      <h3>Деталі місця</h3>
+      <p id="details-content">Оберіть місце на мапі або в списку.</p>
+    </div>
+  </div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="{% static 'js/main_js.js' %}"></script>
+</body>
+</html>
