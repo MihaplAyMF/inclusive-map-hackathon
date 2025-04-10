@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo">Main</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>🔍</button>
+    </div>
+    <div class="nav-links">
+      <button>FIND PLACES</button>
+      <button>ROUTES</button>
+      <button>REVIEWS</button>
+    </div>
+  </div>
+  {% block content %}
+  
+  {% endblock %}
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="{% static 'js/main_js.js' %}"></script>
+</body>
+</html>
