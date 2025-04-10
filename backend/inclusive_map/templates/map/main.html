@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accessible Places{% endblock %}
+
+{% block content %}
+  <div class="filters">
+    <button class="filter-btn">VISION IMPAIRMENT</button>
+    <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
+    <button class="filter-btn">TACTILE ELEMENT</button>
+    <button class="filter-btn">EASY ENTRANCE</button>
+  </div>
+  <div class="container">
+    <div id="map"></div>
+    <div class="places-list" id="places"></div>
+    <div class="details-panel" id="details">
+      <h3>Деталі місця</h3>
+      <p id="details-content">Оберіть місце на мапі або в списку.</p>
+    </div>
+  </div>
+{% endblock %}

@@ -13,7 +13,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+STATIC_URL = 'static/'
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static", 
+]
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -22,6 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-dn)j((jc*ptt4$k3o+&p#kv$s14+&io9v5u8b98oom1!*%ax&$'
 
+API_KEY = 'AIzaSyABknmo5g9CNjhmoBKebqNFb2S8iDn_3_Q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -36,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    # 'rest_framework',
     'inclusive_map',
+    
 ]
 
 MIDDLEWARE = [
@@ -55,7 +64,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,14 +84,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    # 'default': {#це тупо я закоментував бо поки не маю доступу до бази даних
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'inclusive_map',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'password', # very HARD password
-    #     'HOST': 'db',
-    #     'PORT': '5432',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'HAckathon',
+        'USER': 'postgres',
+        'PASSWORD': '1201', 
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 
