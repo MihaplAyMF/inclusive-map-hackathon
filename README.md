@@ -12,13 +12,9 @@ Inclusive Map — це веб-сервіс для пошуку інклюзив�
 - Підтримка спеціального профілю користувача
 
 ## 🛠️ Технології
-- **Backend**: Django + Django REST Framework + PostgreSQL
-- **Frontend**: React + TypeScript + TailwindCSS
-- **Інші**: Docker, Docker Compose 
-- Frontend та Інші поки під питанням
+- **Backend**: Django + PostgreSQL
+- **Frontend**: JavaScript
 
 ## 🚀 Запуск проєкту (у розробці)
 ```bash```
-# Для запуску у dev-режимі:
-docker-compose up --build (Поки під питанням)
 
