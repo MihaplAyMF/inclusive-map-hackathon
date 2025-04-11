@@ -9,9 +9,12 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)              
-            return redirect('home')  # Перенаправляє на головну сторінку після реєстрації
+            user = form.save()  # Зберігає користувача
+            print("User saved:", user)  # Перевірка, чи дані користувача збережені
+            login(request, user)  # Логін користувача
+            return redirect('home')  # Перенаправляє на домашню сторінку
+        else:
+            print("Form is not valid. Errors:", form.errors)  # Виведення помилок форми
     else:
         form = RegisterForm()
     return render(request, 'users/register.html', {'form': form})
@@ -19,3 +22,5 @@ def register(request):
 def reviews(request):
     return render(request, 'users/reviews.html')
 
+def home(request):
+    return render(request, 'base.html')

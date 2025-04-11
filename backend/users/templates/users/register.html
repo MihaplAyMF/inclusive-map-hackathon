@@ -7,49 +7,62 @@
   <title>Вхід / Реєстрація</title>
   <link rel="stylesheet" href="{% static 'css/style_reg.css' %}" />
 </head>
+
 <body>
     <div class="form-container">
-    <div class="toggle-buttons">
-        <button id="loginTab" class="active">Вхід</button>
-        <button id="registerTab">Реєстрація</button>
-    </div>
-
-    <!-- Форма входу -->
-    <form id="loginForm">
-        <label for="login-username">Логін</label>
-        <input type="text" id="login-username" required />
-
-        <label for="login-password">Пароль</label>
-        <input type="password" id="login-password" required />
-
-        <button type="submit">Увійти</button>
-    </form>
-
-    <!-- Форма реєстрації -->
-    <form id="registerForm" class="hidden" method="POST" action="{% url 'register' %}">
-        {% csrf_token %}
-        <label for="register-name">Ім’я</label>
-        <input type="text" id="register-name" required />
-
-        <label for="register-username">Логін</label>
-        <input type="text" id="register-username" required />
-
-        <label for="register-email">Gmail</label>
-        <input type="email" id="register-email" name="email" required placeholder="you@gmail.com" />
-
-        <label for="register-password">Пароль</label>
-        <input type="password" id="register-password" required />
-
-        <label for="register-confirm">Повторіть пароль</label>
-        <input type="password" id="register-confirm" required />
-
-        <div class="checkbox-group">
-            <input type="checkbox" id="special-needs" />
-            <label for="special-needs">Я маю особливі потреби</label>
+        <div class="toggle-buttons">
+            <button id="loginTab" class="active">Вхід</button>
+            <button id="registerTab">Реєстрація</button>
         </div>
 
-        <button type="submit" class="register-button">Зареєструватися</button>
+        <!-- Форма входу -->
+        <form id="loginForm">
+            <label for="login-username">Логін</label>
+            <input type="text" id="login-username" required />
+
+            <label for="login-password">Пароль</label>
+            <input type="password" id="login-password" required />
+
+            <button type="submit">Увійти</button>
+        </form>
+
+        <!-- Форма реєстрації -->
+           
+    <form id="registerForm" class="hidden" method="POST" action="{% url 'register' %}">
+     {% csrf_token %}
+
+    <label for="register-name">Ім’я</label>
+    {{ form.username }}  <!-- Вивести поле для імені користувача -->
+    {% for error in form.username.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+
+    <label for="register-email">Gmail</label>
+    {{ form.email }}  <!-- Вивести поле для email -->
+    {% for error in form.email.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+
+    <label for="register-password">Пароль</label>
+    {{ form.password1 }}  <!-- Вивести поле для пароля -->
+    {% for error in form.password1.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+
+    <label for="register-confirm">Повторіть пароль</label>
+    {{ form.password2 }}  <!-- Вивести поле для підтвердження пароля -->
+    {% for error in form.password2.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+
+    <div class="checkbox-group">
+        {{ form.has_special_needs }}  <!-- Вивести чекбокс для особливих потреб -->
+        <label for="special-needs">Я маю особливі потреби</label>
+    </div>
+
+    <button type="submit" class="register-button">Зареєструватися</button>
     </form>
+ 
     </div>
 
     <script src="{% static 'js/script_reg.js' %}"></script>

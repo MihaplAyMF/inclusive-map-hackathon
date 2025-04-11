@@ -1,4 +1,4 @@
-# inclusive_map/apps.py
+# users/apps.py
 
 from django.apps import AppConfig
 

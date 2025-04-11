@@ -2,22 +2,18 @@
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
-
-User = get_user_model()  # Отримуємо кастомну модель користувача
+from .models import CustomUser
 
 class RegisterForm(UserCreationForm):
-    has_special_needs = forms.BooleanField(required=False, label='Я маю особливі потреби')
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+    has_special_needs = forms.BooleanField(required=False)
 
     class Meta:
-        model = User  # Замість User використовуйте вашу кастомну модель
-        fields = ['username', 'email', 'password1', 'password2']
+        model = CustomUser
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'has_special_needs']
 
-    def save(self, commit=True):
-        user = super().save(commit)
-        if commit:
-            user_profile = user.userprofile
-            user_profile.has_special_needs = self.cleaned_data['has_special_needs']
-            user_profile.save()
-        return user
-
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput())
