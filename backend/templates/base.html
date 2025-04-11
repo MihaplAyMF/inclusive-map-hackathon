@@ -2,31 +2,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}Inclusive Map{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Inclusive Map{% endblock %}</title>
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <!-- Leaflet Routing Machine -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+    <!-- Leaflet Routing Machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
 </head>
 <body>
     <div class="top-bar">
-        <div class="green-line"></div>         <div class="logo">Main</div>
+        <div class="green-line"></div>         
+        <div class="logo">Main</div>
         <div class="search-bar">
             <input type="text" placeholder="Search...">
             <button>🔍</button>
         </div>
         <div class="nav-links">
             <button>FIND PLACES</button>
-            <button>ROUTES</button>
+            <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
             <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
             <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
         </div>
