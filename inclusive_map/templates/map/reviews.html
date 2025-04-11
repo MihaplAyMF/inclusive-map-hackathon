@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Відгуки{% endblock %}
+
+{% block content %}
+<div class="reviews-container">
+  <h1>Всі місця та відгуки</h1>
+  <div class="reviews-grid">
+    {% for place in places %}
+      <div class="place-card">
+        <h3>{{ place.name }}</h3>
+        <p><strong>Адреса:</strong> {{ place.address }}</p>
+
+        {% if place.image %}
+          <img src="{{ place.image.url }}" width="100%" style="border-radius: 10px; margin: 10px 0;">
+        {% endif %}
+
+        <p>Середня оцінка: {{ place.average_rating|floatformat:1 }} ⭐ ({{ place.total_reviews }} відгуків)</p>
+
+        <!-- Перші 2 відгуки -->
+        <div>
+          <h4>Відгуки:</h4>
+          {% for review in place.reviews.all|slice:":2" %}
+            <p><strong>{{ review.user.username }}</strong>: {{ review.rating }} ⭐ — {{ review.comment }}</p>
+          {% empty %}
+            <p>Ще немає відгуків.</p>
+          {% endfor %}
+
+          {% if place.reviews.count > 2 %}
+            <button class="show-all-btn" data-place="{{ place.id }}">Показати всі відгуки</button>
+          {% endif %}
+        </div>
+
+        <!-- Форма для нового відгуку -->
+        <form method="post" action="{% url 'add_review' place.id %}">
+          {% csrf_token %}
+          <label>Оцінка:
+            <select name="rating" required>
+              {% for i in "12345" %}
+                <option value="{{ i }}">{{ i }} ⭐</option>
+              {% endfor %}
+            </select>
+          </label>
+          <textarea name="comment" placeholder="Ваш коментар..." required></textarea>
+          <button type="submit">Залишити відгук</button>
+        </form>
+
+        <!-- Модальне вікно -->
+        <div class="modal" id="modal-{{ place.id }}" style="display:none;">
+          <div class="modal-content">
+            <span class="close" data-place="{{ place.id }}">&times;</span>
+            <h3>Всі відгуки про {{ place.name }}</h3>
+            {% for review in place.reviews.all %}
+              <p><strong>{{ review.user.username }}</strong>: {{ review.rating }} ⭐ — {{ review.comment }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

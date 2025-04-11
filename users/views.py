@@ -16,6 +16,4 @@ def register(request):
         form = RegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-def reviews(request):
-    return render(request, 'users/reviews.html')
 
