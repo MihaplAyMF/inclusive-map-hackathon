@@ -16,6 +16,8 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/route.css' %}" />
 </head>
 <body>
     <div class="top-bar">
@@ -39,8 +41,11 @@
     <!-- Page-specific JS -->
     {% if request.path == '/routes/' %}
     <script src="{% static 'js/route_map.js' %}"></script>
+    {% elif request.path == '/reviews/' %}
+    <script src="{% static 'js/reviews.js' %}"></script>
     {% else %}
     <script src="{% static 'js/main_js.js' %}"></script>
     {% endif %}
+    
 </body>
 </html>
