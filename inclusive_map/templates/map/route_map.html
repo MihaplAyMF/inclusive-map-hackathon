@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Routes{% endblock %}
+
+{% block content %}
+  <form style="display:none">{% csrf_token %}</form>
+
+  <!-- ФІЛЬТРИ -->
+  <div class="filters">
+    <button class="filter-btn">VISION IMPAIRMENT</button>
+    <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
+    <button class="filter-btn">TACTILE ELEMENT</button>
+    <button class="filter-btn">EASY ENTRANCE</button>
+    <button class="filter-btn">ACCESSIBLE TOILET</button>
+    <button class="filter-btn">HAS RAMP</button>
+  </div>
+
+  <!-- МАПА -->
+  <div id="map" style="height: 600px; margin: 20px; border-radius: 12px;"></div>
+
+  <!-- Leaflet Routing -->
+  <!-- Leaflet спочатку -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Потім Leaflet Routing Machine -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+
+
+  <!-- Логіка побудови маршрутів -->
+  <script src="{% static 'js/route_map.js' %}"></script>
+{% endblock %}

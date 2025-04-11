@@ -11,6 +11,10 @@ def index(request):
     return render(request, 'map/main.html')
 
 
+def route_page(request):
+    return render(request, 'map/route_map.html')
+
+
 @csrf_exempt
 def get_location_info(request):
     if request.method == 'POST':

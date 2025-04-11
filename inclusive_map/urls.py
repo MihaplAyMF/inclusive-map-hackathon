@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.index, name='index'), 
     path('api/add-place/', views.api_add_place, name='api_add_place'),
     path('filter-places/', views.filter_places, name='filter_places'),
+    path('routes/', views.route_page, name='route_page'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
