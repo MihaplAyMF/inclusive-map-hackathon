@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Routes{% endblock %}
+{% block title %}Маршрути{% endblock %}
 
 {% block content %}
   <form style="display:none">{% csrf_token %}</form>
 
-  <!-- ФІЛЬТРИ -->
   <div class="filters">
     <button class="filter-btn">VISION IMPAIRMENT</button>
     <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
@@ -16,20 +15,20 @@
     <button class="filter-btn">HAS RAMP</button>
   </div>
 
-  <!-- МАПА -->
   <div id="map" style="height: 600px; margin: 20px; border-radius: 12px;"></div>
 
-  <!-- Leaflet Routing -->
-  <!-- Leaflet спочатку -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <div class="route-output">
+    <div id="route-instructions"></div>
+    <div id="route-places-details"></div>
+  </div>
+  <!-- Leaflet Routing Machine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
 
-<!-- Потім Leaflet Routing Machine -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
-
-
-
-  <!-- Логіка побудови маршрутів -->
+  <!-- Спеціальний JS для маршрутів -->
   <script src="{% static 'js/route_map.js' %}"></script>
+
+  <p style="text-align: center; font-weight: bold; color: #333;">
+    Клікніть спочатку початкову точку маршруту, потім кінцеву. Автоматично буде включено до 5 доступних місць поблизу.
+  </p>
 {% endblock %}

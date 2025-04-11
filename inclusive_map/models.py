@@ -7,11 +7,11 @@ class Place(models.Model):
     longitude = models.FloatField()
 
     # Параметри доступності
-    has_ramp = models.BooleanField(default=False)            # Пандус
-    has_tactile_elements = models.BooleanField(default=False) # Тактильні елементи
-    wheelchair_accessible = models.BooleanField(default=False) # Доступ на візку
-    accessible_toilet = models.BooleanField(default=False)     # Адаптований туалет
-    easy_entrance = models.BooleanField(default=False)         # Зручний вхід
+    has_ramp = models.BooleanField(default=False)            
+    has_tactile_elements = models.BooleanField(default=False) 
+    wheelchair_accessible = models.BooleanField(default=False) 
+    accessible_toilet = models.BooleanField(default=False)     
+    easy_entrance = models.BooleanField(default=False)         
 
     # Оцінка
     average_rating = models.FloatField(default=0.0)

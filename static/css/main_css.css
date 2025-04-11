@@ -198,3 +198,24 @@ body {
   font-size: 14px;
   color: green;
 }
+
+.route-output {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#route-instructions ol {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.place-detail {
+  background: #f3f3f3;
+  padding: 10px;
+  margin: 10px 0;
+  border-left: 5px solid #2e7d32;
+  border-radius: 6px;
+}
