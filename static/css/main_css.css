@@ -1,0 +1,231 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ddd;
+  }
+  
+  .top-bar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+    background-color: #2e7d32; 
+    color: white;
+    z-index: 10;
+  }
+  
+  .logo {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 28px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: white;
+    margin: 0 20px;
+  }
+  
+  .search-bar input {
+    border: none;
+    outline: none;
+    width: 200px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .nav-links button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: white;
+  }
+  
+  .nav-links button:hover {
+    background-color: #bbb;
+    border-radius: 5px;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+  
+  .filter-btn {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #bbb;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .filter-btn:hover {
+    background-color: #999;
+  }
+  
+  .filter-btn.active {
+    background-color: #333;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  #map {
+    width: 50%;
+    height: 500px;
+    border-radius: 40px;
+    overflow: hidden;
+  }
+  
+  .places-list {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .place-card {
+    background-color: green;
+    border-radius: 30px;
+    padding: 20px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
+  .place-card:hover {
+    background-color: #0c0;
+  }
+  
+  .details-panel {
+    width: 25%;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 20px;
+  }
+  
+  .details-panel h3 {
+    margin-top: 0;
+  }
+
+  .green-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Розтягнути по всій висоті шапки */
+    background-color: #2e7d32; /* Зелений колір */
+    z-index: -1; /* Відправити лінію на фон */
+  }
+
+  .reviews-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .reviews-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .modal-content input[type="text"],
+  .modal-content input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .checkbox-group label {
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .modal-content input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+  
+  .modal-content button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content button[type="submit"]:hover {
+    background-color: #1b5e20;
+  }
+  .modal-content * {
+    box-sizing: border-box;
+  }
