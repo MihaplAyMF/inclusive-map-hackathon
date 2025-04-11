@@ -1,9 +1,10 @@
 # map/views.py
 from django.http import JsonResponse
-import requests
 from django.views.decorators.csrf import csrf_exempt
-import json
 from config.settings import API_KEY
+from django.shortcuts import render, redirect
+import json
+import requests
 
 @csrf_exempt
 def get_location_info(request):
@@ -35,13 +36,7 @@ def get_location_info(request):
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-
-
-from django.shortcuts import render
-
 def index(request):
     return render(request, 'map/main.html')
 
-def register(request):
-    return render(request, 'users/reg.html')
 
