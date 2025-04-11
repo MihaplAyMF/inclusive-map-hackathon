@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="top-bar">
+        <div class="green-line"></div> <!-- Зелена лінія -->
         <div class="logo">Main</div>
         <div class="search-bar">
             <input type="text" placeholder="Search...">
@@ -18,11 +19,9 @@
         <div class="nav-links">
             <button>FIND PLACES</button>
             <button>ROUTES</button>
-            <button>REVIEWS</button>
+            <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
+            <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
         </div>
-        <nav>
-            <a href="{% url 'register' %}">Зареєструватися</a>
-        </nav>
     </div>
     {% block content %}
       
