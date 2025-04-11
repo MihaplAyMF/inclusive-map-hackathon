@@ -18,9 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
     selectedLng = lng;
 
     const addBtn = document.getElementById('add-place-btn');
-    if (addBtn) {
-      addBtn.style.display = 'inline-block';
-    }
+
+
+    if (addBtn) addBtn.style.display = 'inline-block';
+
 
     if (marker) {
       marker.setLatLng([lat, lng]);
@@ -129,27 +130,28 @@ document.addEventListener('DOMContentLoaded', function () {
           `;
 
           const marker = L.marker([place.latitude, place.longitude])
-  .addTo(map)
-  .bindPopup(popupContent)
-  .on('click', () => {
-    const detailsPanel = document.getElementById('details');
-    if (!detailsPanel) return;
+            .addTo(map)
+            .bindPopup(popupContent)
+            .on('click', () => {
+              const detailsPanel = document.getElementById('details');
+              if (!detailsPanel) return;
 
-    detailsPanel.innerHTML = `
-      <h3>Деталі місця: ${place.name}</h3>
-      <p>Адреса: ${place.address}</p>
-      <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)</p>
-      <p>Доступність:</p>
-      <ul>
-        ${place.has_ramp ? '<li>✅ Пандус</li>' : ''}
-        ${place.wheelchair_accessible ? '<li>✅ Доступ для візка</li>' : ''}
-        ${place.has_tactile_elements ? '<li>✅ Тактильні елементи</li>' : ''}
-        ${place.accessible_toilet ? '<li>✅ Адаптований туалет</li>' : ''}
-        ${place.easy_entrance ? '<li>✅ Зручний вхід</li>' : ''}
-      </ul>
-      ${place.image ? `<img src="${place.image}" width="400" style="margin-top:12px;border-radius:12px;">` : ''}
-    `;
-  });
+              detailsPanel.innerHTML = `
+                <h3>Деталі місця: ${place.name}</h3>
+                <p>Адреса: ${place.address}</p>
+                <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)</p>
+                <p>Доступність:</p>
+                <ul>
+                  ${place.has_ramp ? '<li>✅ Пандус</li>' : ''}
+                  ${place.wheelchair_accessible ? '<li>✅ Доступ для візка</li>' : ''}
+                  ${place.has_tactile_elements ? '<li>✅ Тактильні елементи</li>' : ''}
+                  ${place.accessible_toilet ? '<li>✅ Адаптований туалет</li>' : ''}
+                  ${place.easy_entrance ? '<li>✅ Зручний вхід</li>' : ''}
+                </ul>
+                ${place.image ? `<img src="${place.image}" width="400" style="margin-top:12px;border-radius:12px;">` : ''}
+              `;
+            });
+
           markers.push(marker);
         });
       });

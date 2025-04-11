@@ -1,12 +1,9 @@
-.venv/
-# Ігнорування кешу Python
+venv/
 __pycache__/
-*.pyc
 
-# Ігнорування файлів налаштувань IDE
-*.vscode/
-*.idea/
+.vscode
+.idea
 
-# Ігнорування системних файлів
-.DS_Store
-Thumbs.db
+db.sqlite3
+media/
+
