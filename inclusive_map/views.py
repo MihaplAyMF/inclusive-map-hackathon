@@ -4,6 +4,12 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 import json
 from config.settings import API_KEY
+from .models import Place
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'map/main.html')
+
 
 @csrf_exempt
 def get_location_info(request):
@@ -36,8 +42,26 @@ def get_location_info(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+@csrf_exempt
+def api_add_place(request):
+    if request.method == 'POST':
+        try:
+            place = Place(
+                name=request.POST.get('name'),
+                address=request.POST.get('address'),
+                latitude=request.POST.get('latitude'),
+                longitude=request.POST.get('longitude'),
+                has_ramp=bool(request.POST.get('has_ramp')),
+                has_tactile_elements=bool(request.POST.get('has_tactile_elements')),
+                wheelchair_accessible=bool(request.POST.get('wheelchair_accessible')),
+                accessible_toilet=bool(request.POST.get('accessible_toilet')),
+                easy_entrance=bool(request.POST.get('easy_entrance')),
+                image=request.FILES.get('image')
+            )
+            place.save()
+            return JsonResponse({'status': 'ok'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    return JsonResponse({'status': 'invalid'}, status=400)
 
-from django.shortcuts import render
 
-def index(request):
-    return render(request, 'map/main.html')
