@@ -5,4 +5,5 @@ urlpatterns = [
     path('get-location-info/', views.get_location_info, name='get_location_info'),
     path('', views.index, name='index'), 
     path('register/', views.register, name='register'),  
+    path('reviews/', views.reviews, name='reviews'),  # Добавляем новый маршрут
 ]
