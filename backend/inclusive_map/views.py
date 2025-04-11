@@ -41,3 +41,7 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'map/main.html')
+
+def register(request):
+    return render(request, 'users/reg.html')
+
