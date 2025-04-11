@@ -2,16 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Inclusive Map{% endblock %}</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Leaflet Routing Machine -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
 </head>
 <body>
     <div class="top-bar">
-        <div class="green-line"></div> <!-- Зелена лінія -->
-        <div class="logo">Main</div>
+        <div class="green-line"></div>         <div class="logo">Main</div>
         <div class="search-bar">
             <input type="text" placeholder="Search...">
             <button>🔍</button>
@@ -23,10 +31,15 @@
             <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
         </div>
     </div>
-    {% block content %}
-      
-    {% endblock %}
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Content block -->
+    {% block content %}{% endblock %}
+
+    <!-- Page-specific JS -->
+    {% if request.path == '/routes/' %}
+    <script src="{% static 'js/route_map.js' %}"></script>
+    {% else %}
     <script src="{% static 'js/main_js.js' %}"></script>
+    {% endif %}
 </body>
 </html>
