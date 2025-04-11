@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   let marker;
-  const map = L.map('map').setView([49.8397, 24.0297], 16);
+  let markers = [];
 
+  const map = L.map('map').setView([49.8397, 24.0297], 16);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let selectedLat = null;
   let selectedLng = null;
 
+  // === КЛІК ПО МАПІ ===
   map.on('click', function (e) {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 
+  // === ДОДАВАННЯ МІСЦЯ ===
   const form = document.getElementById('add-place-form');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -82,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('form-status').innerText = 'Місце додано успішно!';
           form.reset();
           setTimeout(window.closeModal, 2000);
+          fetchFilteredPlaces(); // оновити мапу
         })
         .catch(err => {
           document.getElementById('form-status').innerText = 'Помилка під час додавання.';
@@ -89,14 +93,76 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  filterButtons.forEach(button => {
+  // === ФІЛЬТРИ ===
+  function getActiveFilters() {
+    const filters = {};
+    document.querySelectorAll('.filter-btn.active').forEach(btn => {
+      const text = btn.textContent.trim();
+      if (text === 'VISION IMPAIRMENT') filters.has_tactile_elements = true;
+      if (text === 'WHEELCHAIR ACCESSIBLE') filters.wheelchair_accessible = true;
+      if (text === 'TACTILE ELEMENT') filters.has_ramp = true;
+      if (text === 'EASY ENTRANCE') filters.easy_entrance = true;
+    });
+    return filters;
+  }
+
+  function fetchFilteredPlaces() {
+    const filters = getActiveFilters();
+    fetch('/filter-places/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+      },
+      body: JSON.stringify(filters)
+    })
+      .then(res => res.json())
+      .then(data => {
+        markers.forEach(m => map.removeLayer(m));
+        markers = [];
+
+        data.forEach(place => {
+          const popupContent = `
+            <strong>${place.name}</strong><br>
+            ${place.address}<br>
+            ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)
+          `;
+
+          const marker = L.marker([place.latitude, place.longitude])
+  .addTo(map)
+  .bindPopup(popupContent)
+  .on('click', () => {
+    const detailsPanel = document.getElementById('details');
+    if (!detailsPanel) return;
+
+    detailsPanel.innerHTML = `
+      <h3>Деталі місця: ${place.name}</h3>
+      <p>Адреса: ${place.address}</p>
+      <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)</p>
+      <p>Доступність:</p>
+      <ul>
+        ${place.has_ramp ? '<li>✅ Пандус</li>' : ''}
+        ${place.wheelchair_accessible ? '<li>✅ Доступ для візка</li>' : ''}
+        ${place.has_tactile_elements ? '<li>✅ Тактильні елементи</li>' : ''}
+        ${place.accessible_toilet ? '<li>✅ Адаптований туалет</li>' : ''}
+        ${place.easy_entrance ? '<li>✅ Зручний вхід</li>' : ''}
+      </ul>
+      ${place.image ? `<img src="${place.image}" width="400" style="margin-top:12px;border-radius:12px;">` : ''}
+    `;
+  });
+          markers.push(marker);
+        });
+      });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => {
       button.classList.toggle('active');
-      // Логіка фільтрації
+      fetchFilteredPlaces();
     });
   });
 
+  // === ПОШУК ===
   const searchButton = document.querySelector('.search-bar button');
   if (searchButton) {
     searchButton.addEventListener('click', () => {
@@ -131,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Глобальні функції для кнопок
+  // === МОДАЛЬНЕ ВІКНО ===
   window.openModal = function () {
     const modal = document.getElementById('add-place-modal');
     if (!modal) return;
@@ -147,4 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('add-place-modal');
     if (modal) modal.style.display = 'none';
   };
+
+  // === ПЕРШЕ ЗАВАНТАЖЕННЯ ФІЛЬТРОВАНИХ МІСЦЬ ===
+  fetchFilteredPlaces();
 });

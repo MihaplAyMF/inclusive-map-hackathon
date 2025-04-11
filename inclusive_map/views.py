@@ -65,3 +65,40 @@ def api_add_place(request):
     return JsonResponse({'status': 'invalid'}, status=400)
 
 
+@csrf_exempt
+def filter_places(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        queryset = Place.objects.all()
+
+        if data.get('has_ramp'):
+            queryset = queryset.filter(has_ramp=True)
+        if data.get('has_tactile_elements'):
+            queryset = queryset.filter(has_tactile_elements=True)
+        if data.get('wheelchair_accessible'):
+            queryset = queryset.filter(wheelchair_accessible=True)
+        if data.get('accessible_toilet'):
+            queryset = queryset.filter(accessible_toilet=True)
+        if data.get('easy_entrance'):
+            queryset = queryset.filter(easy_entrance=True)
+
+        results = []
+        for place in queryset:
+            results.append({
+                'name': place.name,
+                'address': place.address,
+                'latitude': place.latitude,
+                'longitude': place.longitude,
+                'rating': place.average_rating,
+                'reviews': place.total_reviews,
+                'image': place.image.url if place.image else None,
+                'has_ramp': place.has_ramp,
+                'has_tactile_elements': place.has_tactile_elements,
+                'wheelchair_accessible': place.wheelchair_accessible,
+                'accessible_toilet': place.accessible_toilet,
+                'easy_entrance': place.easy_entrance,
+            })
+
+        return JsonResponse(results, safe=False)
+
+    return JsonResponse({'error': 'Invalid method'}, status=405)
