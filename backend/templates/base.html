@@ -19,19 +19,37 @@
 </head>
 <body>
     <div class="top-bar">
-        <div class="green-line"></div>         
-        <div class="logo">Main</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button>🔍</button>
-        </div>
-        <div class="nav-links">
-            <button>FIND PLACES</button>
-            <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
-            <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
-            <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
+
+        <div class="logo">Home</div>
+        
+        <nav class="navbar"><!-- дропдаун менюшка -->
+            <ul class="nav-links">
+                <li class="nav-link">
+                    <a href="{% url 'route_page' %}">Routes</a>
+                </li>
+                <li class="nav-link">
+                    <a href="{% url 'reviews' %}">Reviews</a>
+                </li>
+                <li class="nav-link services">
+                    <a href="{% url 'register' %}">Main</a>
+                    <ul class="drop-down">
+                        <li>Login</li><!-- Сюда в майбутньому треба додати рефку -->
+                        <li>Register</li>
+                    </ul>
+                </li>
+
+
+            </ul>
         </div>
     </div>
+
+
+
+    
+
+
+
+
 
     <!-- Content block -->
     {% block content %}{% endblock %}

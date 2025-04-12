@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'HAckathon',
-        'USER': 'postgres',
+        'USER': 'Django',
         'PASSWORD': '1201', 
         'HOST': 'localhost',
         'PORT': '5432',
