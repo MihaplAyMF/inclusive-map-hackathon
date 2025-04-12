@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Place, Review
+from .models import AccessibilitySuggestion, Place, Review
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
@@ -25,3 +26,20 @@ class ReviewAdmin(admin.ModelAdmin):
     def short_comment(self, obj):
         return obj.comment[:30] + '...' if len(obj.comment) > 30 else obj.comment
     short_comment.short_description = 'Коментар'
+
+@admin.register(AccessibilitySuggestion)
+class AccessibilitySuggestionAdmin(admin.ModelAdmin):
+    list_display = ('place', 'user', 'status', 'submitted_at')
+    list_filter = ('status',)
+    actions = ['approve_suggestions', 'reject_suggestions']
+
+    @admin.action(description="Схвалити вибрані пропозиції та оновити місце")
+    def approve_suggestions(self, request, queryset):
+        for suggestion in queryset:
+            suggestion.status = 'approved'
+            suggestion.save()
+            suggestion.apply_to_place()  # 🟢 застосувати зміни
+
+    @admin.action(description="Відхилити вибрані пропозиції")
+    def reject_suggestions(self, request, queryset):
+        queryset.update(status='rejected')

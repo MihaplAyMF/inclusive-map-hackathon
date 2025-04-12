@@ -116,3 +116,12 @@ body {
     font-size: 24px;
     cursor: pointer;
   }
+  
+  .suggest-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #0066cc;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }

@@ -3,6 +3,10 @@
 
 {% block title %}Accessible Places{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/accessible_places.css' %}">
+{% endblock %}
+
 {% block content %}
   <div class="filters">
     <button class="filter-btn">VISION IMPAIRMENT</button>
@@ -19,31 +23,32 @@
       <p id="details-content">Оберіть місце на мапі або в списку.</p>
     </div>
   </div>
-  <button id="add-place-btn" style="display: none;" onclick="openModal()">Додати місце</button>
+  <button id="add-place-btn" style="display: none;">Додати місце</button>
 
-<div id="add-place-modal" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Додати нове місце</h2>
-    <form id="add-place-form" enctype="multipart/form-data" method="post">
-      {% csrf_token %}
-      <input type="text" name="name" placeholder="Назва" required>
-      <input type="text" name="address" placeholder="Адреса" required>
+  <div id="add-place-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" id="modal-close">&times;</span>
+      <h2>Додати нове місце</h2>
+      <form id="add-place-form" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Назва" required>
+        <input type="text" name="address" placeholder="Адреса" required>
 
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="has_ramp"> Пандус</label>
-        <label><input type="checkbox" name="has_tactile_elements"> Тактильні елементи</label>
-        <label><input type="checkbox" name="wheelchair_accessible"> Доступ для візка</label>
-        <label><input type="checkbox" name="accessible_toilet"> Адаптований туалет</label>
-        <label><input type="checkbox" name="easy_entrance"> Зручний вхід</label>
-      </div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="has_ramp"> Пандус</label>
+          <label><input type="checkbox" name="has_tactile_elements"> Тактильні елементи</label>
+          <label><input type="checkbox" name="wheelchair_accessible"> Доступ для візка</label>
+          <label><input type="checkbox" name="accessible_toilet"> Адаптований туалет</label>
+          <label><input type="checkbox" name="easy_entrance"> Зручний вхід</label>
+        </div>
 
-      <input type="file" name="image">
-      <input type="hidden" name="latitude" id="input-lat">
-      <input type="hidden" name="longitude" id="input-lng">
-      <button type="submit">Зберегти</button>
-    </form>
-    <p id="form-status"></p>
+        <input type="file" name="image">
+        <input type="hidden" name="latitude" id="input-lat">
+        <input type="hidden" name="longitude" id="input-lng">
+        <button type="submit">Зберегти</button>
+      </form>
+      <p id="form-status"></p>
+    </div>
   </div>
-</div>
 {% endblock %}
+<script src="{% static 'js/accessible_places.js' %}"></script>

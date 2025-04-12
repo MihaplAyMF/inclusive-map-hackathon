@@ -1,12 +1,12 @@
 # users/views.py
-
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from inclusive_map.models import AccessibilitySuggestion, Place
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.urls import reverse
-from .forms import RegisterForm
+from .forms import ProfileUpdateForm, RegisterForm
 
 def home(request):
     return render(request, 'base.html')
@@ -35,6 +35,7 @@ def login_view(request):
         if user is not None:
             login(request, user)  # використання правильного login
             return redirect('home')  # перенаправлення на головну після входу
+            messages.success(request, f'{username}, Ви успішно ввійшли в акаунт')
         else:
             # Якщо користувача не знайдено або неправильний пароль
             return render(request, 'users/login.html', {'error': 'Невірні дані для входу'})
@@ -46,4 +47,22 @@ def logout_view(request):
     auth.logout(request)
     return redirect('home')
 
+def profile_view(request):
+    user = request.user
 
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=user)
+
+    user_places = Place.objects.filter(created_by=user)
+    user_suggestions = AccessibilitySuggestion.objects.filter(user=user)
+
+    return render(request, 'users/profile.html', {
+        'form': form,
+        'user_places': user_places,
+        'user_suggestions': user_suggestions
+    })

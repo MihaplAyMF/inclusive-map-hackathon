@@ -132,7 +132,11 @@ document.addEventListener('DOMContentLoaded', function () {
           [end.lat, end.lng],
           [place.latitude, place.longitude]
         );
+<<<<<<< HEAD
         if (dist <= 400) filtered.push(place);
+=======
+        if (dist <= 200) filtered.push(place);
+>>>>>>> roman
       });
 
       const points = filtered.slice(0, 5);

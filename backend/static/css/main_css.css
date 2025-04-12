@@ -2,192 +2,192 @@
    Це дозволяє легко змінювати значення кольорів, висоти та інших параметрів у одному місці.
 */
 :root {
-    --navbar-height: 60px;               /* Висота навігаційної панелі */
-    --navbar-bg: rgb(255, 255, 255);        /* Фоновий колір панелі */
-    --navbar-hover-bg: rgb(255, 255, 255);       
-    --navbar-text: #000000;                
-    --navbar-hover-text: #ffffff;          
-    --accent-color: #cc444b;    
-    --plain-text: #000000;          
-  }
+  --navbar-height: 60px;               /* Висота навігаційної панелі */
+  --navbar-bg: rgb(255, 255, 255);        /* Фоновий колір панелі */
+  --navbar-hover-bg: rgb(255, 255, 255);       
+  --navbar-text: #000000;                
+  --navbar-hover-text: #ffffff;          
+  --accent-color: #cc444b;    
+  --plain-text: #000000;          
+}
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #F5F5F5;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
 }
 
 .top-bar {
-    position: relative;
-    z-index: 1;
-    height: var(--navbar-height);
-    display: flex;
-    background-color: var(--navbar-bg);
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    color: var(--navbar-text);
-    font-family: 'Times New Roman', serif;
-    /* box-shadow: 0px 1px 3px #000000; */ /* Легка тінь*/
-    /* overflow: hidden; */ /* Закоментоване щоб псевдоелементи не обрізалися */
-  }
+  position: relative;
+  z-index: 1;
+  height: var(--navbar-height);
+  display: flex;
+  background-color: var(--navbar-bg);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: var(--navbar-text);
+  font-family: 'Times New Roman', serif;
+  /* box-shadow: 0px 1px 3px #000000; */ /* Легка тінь*/
+  /* overflow: hidden; */ /* Закоментоване щоб псевдоелементи не обрізалися */
+}
+
+.top-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--navbar-bg);
+  z-index: -1; /* Позаду вмісту */
+  transition: background-color 0.6s ease;
+  filter: blur(0rem); /* Розмиття */
+  opacity: 0; /* Прозорість */
+}
+
+.top-bar:hover::before {
+  background-color: var(--navbar-hover-bg);
+}
+
+/* Анімований веселковий градієнт внизу */
+.top-bar::after {
+  content: "";
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  height: 4px; /* лінія градієнта */
+  background-image: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%), 
+    hsl(60, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(180, 100%, 50%), 
+    hsl(240, 100%, 50%), 
+    hsl(300, 100%, 50%), 
+    hsl(360, 100%, 50%) /* Червоний для зациклення ОБОВЯЗКОВО */
+  );
+  background-size: 200% 100%; /* Для плавної анімації */
+  background-position: 0% 0%;
+  animation: gradientMove 5s linear infinite; /* Плавна анімація */
+  z-index: -2; 
   
-  .top-bar::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--navbar-bg);
-    z-index: -1; /* Позаду вмісту */
-    transition: background-color 0.6s ease;
-    filter: blur(0rem); /* Розмиття */
-    opacity: 0; /* Прозорість */
-  }
-  
-  .top-bar:hover::before {
-    background-color: var(--navbar-hover-bg);
-  }
-  
-  /* Анімований веселковий градієнт внизу */
-  .top-bar::after {
-    content: "";
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    height: 4px; /* лінія градієнта */
-    background-image: linear-gradient(
-      to right,
-      hsl(0, 100%, 50%), 
-      hsl(60, 100%, 50%),
-      hsl(120, 100%, 50%),
-      hsl(180, 100%, 50%), 
-      hsl(240, 100%, 50%), 
-      hsl(300, 100%, 50%), 
-      hsl(360, 100%, 50%) /* Червоний для зациклення ОБОВЯЗКОВО */
-    );
-    background-size: 200% 100%; /* Для плавної анімації */
+}
+
+@keyframes gradientMove {
+  0% {
     background-position: 0% 0%;
-    animation: gradientMove 5s linear infinite; /* Плавна анімація */
-    z-index: -2; 
-    
   }
-  
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 200% 0%;
-    }
+  100% {
+    background-position: 200% 0%;
   }
+}
 
 
 .logo {
-    font-family: 'Times New Roman', cursive;
-    font-size: 28px;
-    position: relative; /* Для позиціонування псевдоелемента */
-    display: inline-block; /* Щоб лінія відповідала ширині тексту */
-    text-decoration: none; /* Прибираємо стандартне підкреслення, якщо це посилання */
-    color: #000; /* Базовий колір тексту */
+  font-family: 'Times New Roman', cursive;
+  font-size: 28px;
+  position: relative; /* Для позиціонування псевдоелемента */
+  display: inline-block; /* Щоб лінія відповідала ширині тексту */
+  text-decoration: none; /* Прибираємо стандартне підкреслення, якщо це посилання */
+  color: #000; /* Базовий колір тексту */
 }
 /* Це все тут для того щоб висувалася лінія під home */
 .logo::after {
-    content: ''; /* Порожній псевдоелемент */
-    position: absolute;
-    width: 0; /* Початкова ширина лінії */
-    height: 2px; /* Товщина лінії */
-    background-color: #1976D2; /* Колір лінії */
-    bottom: -4px; /* Відстань від тексту */
-    left: 0;
-    transition: width 0.3s ease; /* Плавна анімація ширини */
+  content: ''; /* Порожній псевдоелемент */
+  position: absolute;
+  width: 0; /* Початкова ширина лінії */
+  height: 2px; /* Товщина лінії */
+  background-color: #1976D2; /* Колір лінії */
+  bottom: -4px; /* Відстань від тексту */
+  left: 0;
+  transition: width 0.3s ease; /* Плавна анімація ширини */
 }
 
 .logo:hover::after {
-    width: 100%; /* Лінія розширюється на всю ширину */
+  width: 100%; /* Лінія розширюється на всю ширину */
 }
 
 .logo:hover {
-    color: #0467cb; /* Зміна кольору тексту при наведенні (опціонально) */
+  color: #0467cb; /* Зміна кольору тексту при наведенні (опціонально) */
 }
 
 
 
 .navbar {
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 8px 24px;
-    background: white;
-    border-radius: 16px;
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 24px;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
 .nav-links {
-    display: flex;
-    gap: 32px;
-    margin-left: auto;
+  display: flex;
+  gap: 32px;
+  margin-left: auto;
 }
 
 .nav-link, .drop-down {
-    list-style: none;
-    padding: 8px 16px;
-    font-weight: 600;
-    cursor: pointer;
+  list-style: none;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .nav-link {
-    position: relative; /* Для коректного позиціонування .drop-down */
+  position: relative; /* Для коректного позиціонування .drop-down */
 }
 
 a {
-    text-decoration: none;
-    color: var(--navbar-text, #333);
+  text-decoration: none;
+  color: var(--navbar-text, #333);
 }
 
 .drop-down {
-    position: absolute;
-    padding: 8px 10px;
-    margin: 12px -15px;/* Регулювання відстані між висувним меню і текстом main(перший параметр), регулювання ширини дропдаун меню другий параметр */
-    background: antiquewhite;
-    color: black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    opacity: 0; /* Спочатку приховане */
-    visibility: hidden; /* Ховаємо */
-    transform: translateY(-5px); /* Зсув вгору */
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Плавна анімація */
-    line-height: 2; /* Збільшує відстань між текстом */
+  position: absolute;
+  padding: 8px 10px;
+  margin: 12px -15px;/* Регулювання відстані між висувним меню і текстом main(перший параметр), регулювання ширини дропдаун меню другий параметр */
+  background: antiquewhite;
+  color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  opacity: 0; /* Спочатку приховане */
+  visibility: hidden; /* Ховаємо */
+  transform: translateY(-5px); /* Зсув вгору */
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Плавна анімація */
+  line-height: 2; /* Збільшує відстань між текстом */
 }
 
 .services:hover .drop-down {
-    display: block; /* Залишаємо для сумісності */
-    opacity: 1; /* Показуємо */
-    visibility: visible;
-    transform: translateY(0); /* Повертаємо на місце */
+  display: block; /* Залишаємо для сумісності */
+  opacity: 1; /* Показуємо */
+  visibility: visible;
+  transform: translateY(0); /* Повертаємо на місце */
 }
 
 .drop-down li:hover {
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    border-radius: 9px;
-    transition: background-color 0.5s ease;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border-radius: 9px;
+  transition: background-color 0.5s ease;
 }
 
 .nav-link:hover {
-    background-color: black;
-    border-radius: 8px;
+  background-color: black;
+  border-radius: 8px;
 }
 
 .nav-link:hover a {
-    color: white;
+  color: white;
 }
 
 .filters {
@@ -199,94 +199,93 @@ a {
 
 /* додай опис тільки в цей коментар */
 .filter-btn {
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    font-weight: bold;
-    border: none;
-    outline: none;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 .filter-btn::after {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    top: 0;
-    left: 0;
-    border-radius: 10px;
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
 }
 /* .filter-btn::before - Створює псевдоелемент до кнопки з градієнтом */
 .filter-btn::before {
-    content: '';
-    background: linear-gradient(
-        45deg,
-        #ff0000, /* Червоний */
-        #ff7f00, /* Оранжевий */
-        #ffff00, /* Жовтий */
-        #00ff00, /* Зелений */
-        #00ffff, /* Блакитний */
-        #0000ff, /* Синій */
-        #7f00ff, /* Фіолетовий */
-        #ff0000  /* Повернення до червоного для безшовності */
-    );
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 600%;
-    z-index: -1;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    filter: blur(8px);
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 10px;
-    opacity: 0;
-    animation: glowing 30s linear infinite;
+  content: '';
+  background: linear-gradient(
+      45deg,
+      #ff0000, /* Червоний */
+      #ff7f00, /* Оранжевий */
+      #ffff00, /* Жовтий */
+      #00ff00, /* Зелений */
+      #00ffff, /* Блакитний */
+      #0000ff, /* Синій */
+      #7f00ff, /* Фіолетовий */
+      #ff0000  /* Повернення до червоного для безшовності */
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(8px);
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+  opacity: 0;
+  animation: glowing 30s linear infinite;
 }
 /* Анімація для плавного руху фону */
 @keyframes glowing {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 400% 0%;
-    }
-    100% {
-        background-position: 0% 0%;
-    }
+  0% {
+      background-position: 0% 0%;
+  }
+  50% {
+      background-position: 400% 0%;
+  }
+  100% {
+      background-position: 0% 0%;
+  }
 }
 /* При наведенні на кнопку, збільшуємо видимість псевдоелемента */
 .filter-btn:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* .filter-btn.active - Стиль кнопки при активації */
 .filter-btn.active {
-    color: #ffffff;
-    background-color: rgb(0, 0, 0);
-    font-weight: bold;
-    transition: background-color 0.5s ease, color 0.5s ease;/* Плавний перехід при активації */
+  color: #ffffff;
+  background-color: rgb(0, 0, 0);
+  font-weight: bold;
+  transition: background-color 0.5s ease, color 0.5s ease;/* Плавний перехід при активації */
 }
 /* .filter-btn.active::after - Стиль псевдоелемента після активації */
 .filter-btn.active::after {
-    background: transparent;
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
+  background: transparent;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
 }
 .filter-btn.active::before {
-    opacity: 1; /* Світіння залишатиметься після активації,  .filter-btn.active::before це ми ще з класу before зберігаємо*/
+  opacity: 1; /* Світіння залишатиметься після активації,  .filter-btn.active::before це ми ще з класу before зберігаємо*/
 }
 
 /*це шоб при деактивації кнопки був плавний перехід*/
 .filter-btn:not(.active) {
-    transition: background-color 0.5s ease, color 0.5s ease; /* Плавний перехід до початкових кольорів */
+  transition: background-color 0.5s ease, color 0.5s ease; /* Плавний перехід до початкових кольорів */
 }
-
 
 .container {
   display: flex;
@@ -302,88 +301,83 @@ a {
 }
 
 .places-list {
-  width: 30%;
+  width: 25%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 12px;
-  overflow-y: auto;
-  max-height: 600px;
+  gap: 20px;
 }
 .place-card {
-    background-color: rgb(255, 255, 255);
-    border-radius: 30px;
-    padding: 20px;
-    border: 1px solid #000000;
-    color: black;
-    font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    position: relative; /* Додаємо для псевдоелементів */
-    z-index: 1;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 20px;
+  border: 1px solid #000000;
+  color: black;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  position: relative; /* Додаємо для псевдоелементів */
+  z-index: 1;
 }
 
 .place-card::after {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    top: 0;
-    left: 0;
-    border-radius: 30px; /* Відповідно до .place-card */
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  border-radius: 30px; /* Відповідно до .place-card */
 }
 
 .place-card::before {
-    content: '';
-    background: linear-gradient(
-        45deg,
-        #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #7f00ff, #ff0000
-    );
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 600%;
-    z-index: -1;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    filter: blur(8px);
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 30px; /* Відповідно до .place-card */
-    opacity: 0;
-    animation: glowing 30s linear infinite;
+  content: '';
+  background: linear-gradient(
+      45deg,
+      #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #7f00ff, #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(8px);
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 30px; /* Відповідно до .place-card */
+  opacity: 0;
+  animation: glowing 30s linear infinite;
 }
 
 .place-card:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .place-card:hover {
-    background-color: rgb(196, 242, 255);
+  background-color: rgb(196, 242, 255);
 }
 
 .place-card.active {
-    color: #ffffff;
-    background-color: rgb(0, 0, 0);
-    font-weight: bold;
-    transition: background-color 0.5s ease, color 0.5s ease;
+  color: #ffffff;
+  background-color: rgb(0, 0, 0);
+  font-weight: bold;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .place-card.active::after {
-    background: transparent;
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
+  background: transparent;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
 }
 
 .place-card.active::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .place-card:not(.active) {
-    transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .details-panel {
@@ -401,71 +395,72 @@ a {
 }
 
 .reviews-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
 }
 
 .reviews-list {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: none;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 10000;
-  backdrop-filter: blur(2px);
+  z-index: 9999;
 }
 
 .modal-content {
-  background-color: #fff;
-  padding: 30px 25px;
-  border-radius: 12px;
-  max-width: 450px;
-  width: 90%;
+  background: #ffffff;
+  padding: 30px 35px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.modal-content h2 {
-  margin-top: 0;
-  font-size: 22px;
-  color: #333;
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .modal-content input[type="text"],
 .modal-content input[type="file"] {
   width: 100%;
-  padding: 10px;
-  margin: 6px 0 10px;
-  border-radius: 6px;
+  padding: 10px 12px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 .checkbox-group {
-  margin: 10px 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
 .checkbox-group label {
+  font-size: 14px;
+  color: #333;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 6px;
+}
+
+.modal-content input[type="checkbox"] {
+  transform: scale(1.2);
 }
 
 .modal-content button[type="submit"] {
@@ -484,34 +479,30 @@ a {
   background-color: #1b5e20;
 }
 
-.modal-content p#form-status {
+#form-status {
+  text-align: center;
   margin-top: 10px;
   font-size: 14px;
-  color: #2e7d32;
+  color: green;
 }
 
-.modal .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #666;
-  cursor: pointer;
-  transition: color 0.2s ease;
+.route-output {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.modal .close:hover {
-  color: #000;
+#route-instructions ol {
+  margin: 10px 0;
+  padding-left: 20px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.place-detail {
+  background: #f3f3f3;
+  padding: 10px;
+  margin: 10px 0;
+  border-left: 5px solid #2e7d32;
+  border-radius: 6px;
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # users/apps.py
+=======
+# inclusive_map/apps.py
+>>>>>>> roman
 
 from django.apps import AppConfig
 

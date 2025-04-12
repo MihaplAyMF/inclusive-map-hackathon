@@ -1,4 +1,6 @@
 venv/
+.venv/
+
 # Ігнорування кешу Python
 __pycache__/
 *.pyc
@@ -10,3 +12,6 @@ __pycache__/
 # Ігнорування системних файлів
 .DS_Store
 Thumbs.db
+db.sqlite3
+media/
+

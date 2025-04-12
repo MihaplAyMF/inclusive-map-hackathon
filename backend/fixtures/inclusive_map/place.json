@@ -1,0 +1,130 @@
+[
+{
+  "model": "inclusive_map.place",
+  "pk": 1,
+  "fields": {
+    "name": "Парк Франка",
+    "address": "Костюшка 123",
+    "latitude": 49.83842530390878,
+    "longitude": 24.020042319548875,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "image": "places/завантаження_2_jKLiD4D.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 2,
+  "fields": {
+    "name": "Головний корпус",
+    "address": "Бандери 181",
+    "latitude": 49.8353460228302,
+    "longitude": 24.014482969184016,
+    "has_ramp": false,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": false,
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "image": "places/1200px-Бандери_3186_xi2ARNJ.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 3,
+  "fields": {
+    "name": "5 Корпус",
+    "address": "Бандери хз яка",
+    "latitude": 49.83513150380875,
+    "longitude": 24.00834665335467,
+    "has_ramp": false,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "image": "places/2232_KYaQL5X.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 4,
+  "fields": {
+    "name": "Сім-23",
+    "address": "Огієнка 11",
+    "latitude": 49.83634594571303,
+    "longitude": 23.87842524567679,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "image": "places/завантаження_rp3il3J.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 5,
+  "fields": {
+    "name": "ТЦ Скриня",
+    "address": "Городоцька 189",
+    "latitude": 49.8350450039341,
+    "longitude": 23.994919674878414,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": false,
+    "image": "places/e080c5aeccc6710b73e0353b5f21fe9b_ROOkU0A.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 6,
+  "fields": {
+    "name": "«БРУДЕРШАФТ»",
+    "address": " вул. Вірменська, 16",
+    "latitude": 49.84308537095564,
+    "longitude": 24.031193331467193,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "image": "places/14800863305838533a897c3_f187a916dc9c2f942a00c80458a89026.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 7,
+  "fields": {
+    "name": "McDonald's",
+    "address": "проспект Шевченка, 7",
+    "latitude": 49.83810354550992,
+    "longitude": 24.031381305742585,
+    "has_ramp": false,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "image": "places/unnamed.jpg"
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 8,
+  "fields": {
+    "name": "ВАМ",
+    "address": "вулиця Івана Виговського, 100",
+    "latitude": 49.81225554899098,
+    "longitude": 23.977469096121876,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "image": "places/2025-03-28.jpg"
+  }
+}
+]

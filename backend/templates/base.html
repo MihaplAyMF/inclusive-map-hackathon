@@ -22,37 +22,30 @@
 </head>
 <body>
     <div class="top-bar">
-
-        <div class="logo">Home</div>
+        <div class="green-line"></div>         
+        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
         
-        <nav class="navbar"><!-- дропдаун менюшка -->
-            <ul class="nav-links">
-                <li class="nav-link">
-                    <a href="{% url 'route_page' %}">Routes</a>
-                </li>
-                <li class="nav-link">
-                    <a href="{% url 'reviews' %}">Reviews</a>
-                </li>
-                <li class="nav-link services">
-                    <a href="{% url 'register' %}">Main</a>
-                    <ul class="drop-down">
-                        <li>Login</li><!-- Сюда в майбутньому треба додати рефку -->
-                        <li>Register</li>
-                    </ul>
-                </li>
-
-
-            </ul>
-        </div>
+        <div class="nav-links">
+            {% if user.is_admin or user.is_staff %}
+                                    <li><a class="dropdown-item  text-white" href="{% url "admin:index" %}">Адмін панель</a></li>
+            {% endif %}
+            <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
+            <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
+            {% if not user.is_authenticated %}
+                <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
+                <button onclick="window.location.href='{% url 'login' %}'">SIGN IN</button>
+             {% else %}
+             <li class="nav-link services">
+                <a href="{% url 'register' %}">User</a>
+                <ul class="drop-down">
+                    <button onclick="window.location.href='{% url 'profile' %}'">PROFILE</button>
+                    <button onclick="window.location.href='{% url 'logout' %}'">LOG OUT</button>
+                </ul>
+            </li>
+                {% endif %}   
+            </div>
+            
     </div>
-
-
-
-    
-
-
-
-
 
     <!-- Content block -->
     {% block content %}{% endblock %}

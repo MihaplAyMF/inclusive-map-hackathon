@@ -22,7 +22,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static", 
 ]
 
-# My models
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Quick-start development settings - unsuitable for production
