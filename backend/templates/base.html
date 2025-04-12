@@ -22,24 +22,37 @@
 </head>
 <body>
     <div class="top-bar">
-        <div class="green-line"></div>         
-        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
+
+        <div class="logo">Home</div>
         
-        <div class="nav-links">
-            {% if user.is_admin or user.is_staff %}
-                                    <li><a class="dropdown-item  text-white" href="{% url "admin:index" %}">Адмін панель</a></li>
-            {% endif %}
-            <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
-            <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
-            {% if not user.is_authenticated %}
-                <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
-                <button onclick="window.location.href='{% url 'login' %}'">SIGN IN</button>
-             {% else %}
-                <span style="color: white;">Hello, {{ user.username }}!</span>
-                <button onclick="window.location.href='{% url 'logout' %}'">LOG OUT</button>
-            {% endif %}   
+        <nav class="navbar"><!-- дропдаун менюшка -->
+            <ul class="nav-links">
+                <li class="nav-link">
+                    <a href="{% url 'route_page' %}">Routes</a>
+                </li>
+                <li class="nav-link">
+                    <a href="{% url 'reviews' %}">Reviews</a>
+                </li>
+                <li class="nav-link services">
+                    <a href="{% url 'register' %}">Main</a>
+                    <ul class="drop-down">
+                        <li>Login</li><!-- Сюда в майбутньому треба додати рефку -->
+                        <li>Register</li>
+                    </ul>
+                </li>
+
+
+            </ul>
         </div>
     </div>
+
+
+
+    
+
+
+
+
 
     <!-- Content block -->
     {% block content %}{% endblock %}
