@@ -4,6 +4,7 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 import json
 from config.settings import API_KEY
+from inclusive_map.forms import AccessibilitySuggestionForm
 from .models import Place
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
@@ -130,3 +131,17 @@ def add_review(request, place_id):
 
     return redirect(request.META.get('HTTP_REFERER', '/reviews/'))
     
+@login_required
+def suggest_accessibility(request, place_id):
+    place = get_object_or_404(Place, id=place_id)
+    if request.method == 'POST':
+        form = AccessibilitySuggestionForm(request.POST)
+        if form.is_valid():
+            suggestion = form.save(commit=False)
+            suggestion.user = request.user
+            suggestion.place = place
+            suggestion.save()
+            return redirect('reviews') 
+    else:
+        form = AccessibilitySuggestionForm()
+    return render(request, 'map/suggest_accessibility.html', {'form': form, 'place': place})

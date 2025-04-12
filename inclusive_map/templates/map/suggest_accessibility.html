@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Запропонувати зміни доступності{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.1); font-family: 'Segoe UI', sans-serif;">
+
+  <h2 style="margin-bottom: 20px;">Запропонувати зміни для: <span style="color: #2e7d32;">{{ place.name }}</span></h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <label>
+        <input type="checkbox" name="has_ramp" {% if place.has_ramp %}checked{% endif %}>
+        Пандус
+      </label>
+      <label>
+        <input type="checkbox" name="has_tactile_elements" {% if place.has_tactile_elements %}checked{% endif %}>
+        Тактильні елементи
+      </label>
+      <label>
+        <input type="checkbox" name="wheelchair_accessible" {% if place.wheelchair_accessible %}checked{% endif %}>
+        Доступ для візка
+      </label>
+      <label>
+        <input type="checkbox" name="accessible_toilet" {% if place.accessible_toilet %}checked{% endif %}>
+        Адаптований туалет
+      </label>
+      <label>
+        <input type="checkbox" name="easy_entrance" {% if place.easy_entrance %}checked{% endif %}>
+        Зручний вхід
+      </label>
+    </div>
+
+    <br>
+    <button type="submit" style="background-color: #2e7d32; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+      Надіслати пропозицію
+    </button>
+  </form>
+</div>
+{% endblock %}

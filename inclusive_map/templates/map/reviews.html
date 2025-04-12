@@ -29,6 +29,7 @@
           {% if place.reviews.count > 2 %}
             <button class="show-all-btn" data-place="{{ place.id }}">Показати всі відгуки</button>
           {% endif %}
+
         </div>
 
         <!-- Форма для нового відгуку -->
@@ -44,7 +45,7 @@
           <textarea name="comment" placeholder="Ваш коментар..." required></textarea>
           <button type="submit" class="custom-button">Залишити відгук</button>
         </form>
-
+        <a href="{% url 'suggest_accessibility' place.id %}" class="suggest-link">Запропонувати зміни доступності</a>
         <!-- Модальне вікно -->
         <div class="modal" id="modal-{{ place.id }}" style="display:none;">
           <div class="modal-content">

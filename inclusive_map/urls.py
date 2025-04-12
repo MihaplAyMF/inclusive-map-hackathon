@@ -13,4 +13,6 @@ urlpatterns = [
     path('routes/', views.route_page, name='route_page'),
     path('reviews/', views.reviews_page, name='reviews'),
     path('reviews/add/<int:place_id>/', views.add_review, name='add_review'),
+    path('suggest/<int:place_id>/', views.suggest_accessibility, name='suggest_accessibility'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
