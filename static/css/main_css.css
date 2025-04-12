@@ -2,13 +2,15 @@
    Це дозволяє легко змінювати значення кольорів, висоти та інших параметрів у одному місці.
 */
 :root {
-  --navbar-height: 60px;               /* Висота навігаційної панелі */
-  --navbar-bg: rgb(255, 255, 255);        /* Фоновий колір панелі */
-  --navbar-hover-bg: rgb(255, 255, 255);       
-  --navbar-text: #000000;                
-  --navbar-hover-text: #ffffff;          
-  --accent-color: #cc444b;    
-  --plain-text: #000000;          
+  --navbar-height: 60px;
+  /* Висота навігаційної панелі */
+  --navbar-bg: rgb(255, 255, 255);
+  /* Фоновий колір панелі */
+  --navbar-hover-bg: rgb(255, 255, 255);
+  --navbar-text: #000000;
+  --navbar-hover-text: #ffffff;
+  --accent-color: #cc444b;
+  --plain-text: #000000;
 }
 
 body {
@@ -29,8 +31,10 @@ body {
   padding: 0 20px;
   color: var(--navbar-text);
   font-family: 'Times New Roman', serif;
-  /* box-shadow: 0px 1px 3px #000000; */ /* Легка тінь*/
-  /* overflow: hidden; */ /* Закоментоване щоб псевдоелементи не обрізалися */
+  /* box-shadow: 0px 1px 3px #000000; */
+  /* Легка тінь*/
+  /* overflow: hidden; */
+  /* Закоментоване щоб псевдоелементи не обрізалися */
 }
 
 .top-bar::before {
@@ -41,10 +45,13 @@ body {
   width: 100%;
   height: 100%;
   background-color: var(--navbar-bg);
-  z-index: -1; /* Позаду вмісту */
+  z-index: -1;
+  /* Позаду вмісту */
   transition: background-color 0.6s ease;
-  filter: blur(0rem); /* Розмиття */
-  opacity: 0; /* Прозорість */
+  filter: blur(0rem);
+  /* Розмиття */
+  opacity: 0;
+  /* Прозорість */
 }
 
 .top-bar:hover::before {
@@ -55,31 +62,35 @@ body {
 .top-bar::after {
   content: "";
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px; /* лінія градієнта */
-  background-image: linear-gradient(
-    to right,
-    hsl(0, 100%, 50%), 
-    hsl(60, 100%, 50%),
-    hsl(120, 100%, 50%),
-    hsl(180, 100%, 50%), 
-    hsl(240, 100%, 50%), 
-    hsl(300, 100%, 50%), 
-    hsl(360, 100%, 50%) /* Червоний для зациклення ОБОВЯЗКОВО */
-  );
-  background-size: 200% 100%; /* Для плавної анімації */
+  height: 4px;
+  /* лінія градієнта */
+  background-image: linear-gradient(to right,
+      hsl(0, 100%, 50%),
+      hsl(60, 100%, 50%),
+      hsl(120, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(240, 100%, 50%),
+      hsl(300, 100%, 50%),
+      hsl(360, 100%, 50%)
+      /* Червоний для зациклення ОБОВЯЗКОВО */
+    );
+  background-size: 200% 100%;
+  /* Для плавної анімації */
   background-position: 0% 0%;
-  animation: gradientMove 5s linear infinite; /* Плавна анімація */
-  z-index: -2; 
-  
+  animation: gradientMove 5s linear infinite;
+  /* Плавна анімація */
+  z-index: -2;
+
 }
 
 @keyframes gradientMove {
   0% {
     background-position: 0% 0%;
   }
+
   100% {
     background-position: 200% 0%;
   }
@@ -89,29 +100,42 @@ body {
 .logo {
   font-family: 'Times New Roman', cursive;
   font-size: 28px;
-  position: relative; /* Для позиціонування псевдоелемента */
-  display: inline-block; /* Щоб лінія відповідала ширині тексту */
-  text-decoration: none; /* Прибираємо стандартне підкреслення, якщо це посилання */
-  color: #000; /* Базовий колір тексту */
+  position: relative;
+  /* Для позиціонування псевдоелемента */
+  display: inline-block;
+  /* Щоб лінія відповідала ширині тексту */
+  text-decoration: none;
+  /* Прибираємо стандартне підкреслення, якщо це посилання */
+  color: #000;
+  /* Базовий колір тексту */
 }
+
 /* Це все тут для того щоб висувалася лінія під home */
 .logo::after {
-  content: ''; /* Порожній псевдоелемент */
+  content: '';
+  /* Порожній псевдоелемент */
   position: absolute;
-  width: 0; /* Початкова ширина лінії */
-  height: 2px; /* Товщина лінії */
-  background-color: #1976D2; /* Колір лінії */
-  bottom: -4px; /* Відстань від тексту */
+  width: 0;
+  /* Початкова ширина лінії */
+  height: 2px;
+  /* Товщина лінії */
+  background-color: #1976D2;
+  /* Колір лінії */
+  bottom: -4px;
+  /* Відстань від тексту */
   left: 0;
-  transition: width 0.3s ease; /* Плавна анімація ширини */
+  transition: width 0.3s ease;
+  /* Плавна анімація ширини */
 }
 
 .logo:hover::after {
-  width: 100%; /* Лінія розширюється на всю ширину */
+  width: 100%;
+  /* Лінія розширюється на всю ширину */
 }
 
 .logo:hover {
-  color: #0467cb; /* Зміна кольору тексту при наведенні (опціонально) */
+  color: #0467cb;
+  /* Зміна кольору тексту при наведенні (опціонально) */
 }
 
 
@@ -136,15 +160,34 @@ body {
   margin-left: auto;
 }
 
-.nav-link, .drop-down {
+.nav-link,
+.drop-down {
   list-style: none;
   padding: 8px 16px;
   font-weight: 600;
   cursor: pointer;
 }
 
+.nav-link a {
+  display: block;
+  padding: 8px 16px;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #3e9fff;
+  border-radius: 8px;
+}
+
+.nav-link:hover a {
+  color: rgb(0, 0, 0);
+}
+
 .nav-link {
-  position: relative; /* Для коректного позиціонування .drop-down */
+  position: relative;
+  /* Для коректного позиціонування .drop-down */
 }
 
 a {
@@ -155,59 +198,51 @@ a {
 .drop-down {
   position: absolute;
   padding: 8px 10px;
-  margin: 12px -15px;/* Регулювання відстані між висувним меню і текстом main(перший параметр), регулювання ширини дропдаун меню другий параметр */
+  margin: 12px -15px;
+  /* Регулювання відстані між висувним меню і текстом main(перший параметр), регулювання ширини дропдаун меню другий параметр */
   background: antiquewhite;
   color: black;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  opacity: 0; /* Спочатку приховане */
-  visibility: hidden; /* Ховаємо */
-  transform: translateY(-5px); /* Зсув вгору */
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Плавна анімація */
-  line-height: 2; /* Збільшує відстань між текстом */
+  opacity: 0;
+  /* Спочатку приховане */
+  visibility: hidden;
+  /* Ховаємо */
+  transform: translateY(-5px);
+  /* Зсув вгору */
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  /* Плавна анімація */
+  line-height: 2;
+  /* Збільшує відстань між текстом */
 }
 
 .services:hover .drop-down {
-  display: block; /* Залишаємо для сумісності */
-  opacity: 1; /* Показуємо */
+  display: block;
+  /* Залишаємо для сумісності */
+  opacity: 1;
+  /* Показуємо */
   visibility: visible;
-  transform: translateY(0); /* Повертаємо на місце */
+  transform: translateY(0);
+  /* Повертаємо на місце */
+}
+
+.drop-down li {
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .drop-down li:hover {
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  border-radius: 9px;
-  transition: background-color 0.5s ease;
+  background-color: #3e9fff;
+  /* світло-блакитний */
+  color: #000000;
+  /* чорний текст */
 }
 
-.nav-link:hover {
-  background-color: black;
-  border-radius: 8px;
+.drop-down li:hover a {
+  color: #000000;
+  /* чорний текст */
 }
-
-.nav-link:hover a {
-  color: white;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .filters {
   display: flex;
@@ -229,6 +264,7 @@ a {
   position: relative;
   z-index: 1;
 }
+
 .filter-btn::after {
   content: '';
   z-index: -1;
@@ -240,20 +276,28 @@ a {
   left: 0;
   border-radius: 10px;
 }
+
 /* .filter-btn::before - Створює псевдоелемент до кнопки з градієнтом */
 .filter-btn::before {
   content: '';
-  background: linear-gradient(
-      45deg,
-      #ff0000, /* Червоний */
-      #ff7f00, /* Оранжевий */
-      #ffff00, /* Жовтий */
-      #00ff00, /* Зелений */
-      #00ffff, /* Блакитний */
-      #0000ff, /* Синій */
-      #7f00ff, /* Фіолетовий */
-      #ff0000  /* Повернення до червоного для безшовності */
-  );
+  background: linear-gradient(45deg,
+      #ff0000,
+      /* Червоний */
+      #ff7f00,
+      /* Оранжевий */
+      #ffff00,
+      /* Жовтий */
+      #00ff00,
+      /* Зелений */
+      #00ffff,
+      /* Блакитний */
+      #0000ff,
+      /* Синій */
+      #7f00ff,
+      /* Фіолетовий */
+      #ff0000
+      /* Повернення до червоного для безшовності */
+    );
   position: absolute;
   top: -2px;
   left: -2px;
@@ -267,18 +311,22 @@ a {
   opacity: 0;
   animation: glowing 30s linear infinite;
 }
+
 /* Анімація для плавного руху фону */
 @keyframes glowing {
   0% {
-      background-position: 0% 0%;
+    background-position: 0% 0%;
   }
+
   50% {
-      background-position: 400% 0%;
+    background-position: 400% 0%;
   }
+
   100% {
-      background-position: 0% 0%;
+    background-position: 0% 0%;
   }
 }
+
 /* При наведенні на кнопку, збільшуємо видимість псевдоелемента */
 .filter-btn:hover::before {
   opacity: 1;
@@ -289,30 +337,27 @@ a {
   color: #ffffff;
   background-color: rgb(0, 0, 0);
   font-weight: bold;
-  transition: background-color 0.5s ease, color 0.5s ease;/* Плавний перехід при активації */
+  transition: background-color 0.5s ease, color 0.5s ease;
+  /* Плавний перехід при активації */
 }
+
 /* .filter-btn.active::after - Стиль псевдоелемента після активації */
 .filter-btn.active::after {
   background: transparent;
   color: rgb(255, 255, 255);
   background-color: rgb(0, 0, 0);
 }
+
 .filter-btn.active::before {
-  opacity: 1; /* Світіння залишатиметься після активації,  .filter-btn.active::before це ми ще з класу before зберігаємо*/
+  opacity: 1;
+  /* Світіння залишатиметься після активації,  .filter-btn.active::before це ми ще з класу before зберігаємо*/
 }
 
 /*це шоб при деактивації кнопки був плавний перехід*/
 .filter-btn:not(.active) {
-  transition: background-color 0.5s ease, color 0.5s ease; /* Плавний перехід до початкових кольорів */
+  transition: background-color 0.5s ease, color 0.5s ease;
+  /* Плавний перехід до початкових кольорів */
 }
-
-
-
-
-
-
-
-
 
 .container {
   display: flex;
@@ -333,6 +378,7 @@ a {
   flex-direction: column;
   gap: 20px;
 }
+
 .place-card {
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
@@ -342,7 +388,8 @@ a {
   font-weight: bold;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  position: relative; /* Додаємо для псевдоелементів */
+  position: relative;
+  /* Додаємо для псевдоелементів */
   z-index: 1;
 }
 
@@ -355,15 +402,14 @@ a {
   background-color: #ffffff;
   top: 0;
   left: 0;
-  border-radius: 30px; /* Відповідно до .place-card */
+  border-radius: 15px;
+  /* Відповідно до .place-card */
 }
 
 .place-card::before {
   content: '';
-  background: linear-gradient(
-      45deg,
-      #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #7f00ff, #ff0000
-  );
+  background: linear-gradient(45deg,
+      #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #7f00ff, #ff0000);
   position: absolute;
   top: -2px;
   left: -2px;
@@ -373,7 +419,8 @@ a {
   height: calc(100% + 4px);
   filter: blur(8px);
   transition: opacity 0.3s ease-in-out;
-  border-radius: 30px; /* Відповідно до .place-card */
+  border-radius: 30px;
+  /* Відповідно до .place-card */
   opacity: 0;
   animation: glowing 30s linear infinite;
 }
@@ -432,12 +479,13 @@ a {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .modal {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -520,7 +568,7 @@ a {
   margin: 20px;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #route-instructions ol {
