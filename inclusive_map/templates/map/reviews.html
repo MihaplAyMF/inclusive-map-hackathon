@@ -32,7 +32,7 @@
         </div>
 
         <!-- Форма для нового відгуку -->
-        <form method="post" action="{% url 'add_review' place.id %}">
+        <form method="post" action="{% url 'add_review' place.id %}" style="display: flex; align-items: center; gap: 40px; margin-top: 10px;">
           {% csrf_token %}
           <label>Оцінка:
             <select name="rating" required>
@@ -42,7 +42,7 @@
             </select>
           </label>
           <textarea name="comment" placeholder="Ваш коментар..." required></textarea>
-          <button type="submit">Залишити відгук</button>
+          <button type="submit" class="custom-button">Залишити відгук</button>
         </form>
 
         <!-- Модальне вікно -->
