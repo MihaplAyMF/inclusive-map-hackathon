@@ -1,34 +1,55 @@
 {% extends 'base.html' %}
 {% block title %}Профіль{% endblock %}
+
 {% block content %}
 <div class="reviews-container">
-  <h2>Профіль користувача</h2>
-  <form method="POST">
+  <h2 style="margin-bottom: 20px;">Профіль користувача</h2>
+
+  <form method="POST" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label>Username:</label>
+    {{ form.username }}
+    
+    <label>Email:</label>
+    {{ form.email }}
+    
+    <label>First name:</label>
+    {{ form.first_name }}
+  
+    <label>Last name:</label>
+    {{ form.last_name }}
+  
+    <label>Bio:</label>
+    {{ form.bio }}
+  
+    <label>Has special needs:</label>
+    {{ form.has_special_needs }}
+    
     <button type="submit">Зберегти зміни</button>
   </form>
 
-  <hr>
+  <hr style="margin: 30px 0;">
+
   <h3>Додані вами місця:</h3>
-  <ul>
+  <ul style="list-style-type: none; padding-left: 0;">
     {% for place in user_places %}
-      <li><strong>{{ place.name }}</strong> — {{ place.address }}</li>
+      <li class="place-detail"><strong>{{ place.name }}</strong> — {{ place.address }}</li>
     {% empty %}
-      <li>Ви ще не додали жодного місця.</li>
+      <li class="place-detail">Ви ще не додали жодного місця.</li>
     {% endfor %}
   </ul>
 
-  <hr>
+  <hr style="margin: 30px 0;">
+
   <h3>Ваші пропозиції щодо змін доступності:</h3>
-  <ul>
+  <ul style="list-style-type: none; padding-left: 0;">
     {% for suggestion in user_suggestions %}
-      <li>
-        {{ suggestion.place.name }} — {{ suggestion.created_at|date:"d.m.Y" }}
+      <li class="place-detail">
+        {{ suggestion.place.name }} — {{ suggestion.submitted_at|date:"d.m.Y" }}
         (Статус: {{ suggestion.status }})
       </li>
     {% empty %}
-      <li>Немає поданих пропозицій.</li>
+      <li class="place-detail">Немає поданих пропозицій.</li>
     {% endfor %}
   </ul>
 </div>

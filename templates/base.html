@@ -27,7 +27,7 @@
         
         <div class="nav-links">
             {% if user.is_admin or user.is_staff %}
-                                    <li><a class="dropdown-item  text-white" href="{% url "admin:index" %}">Адмін панель</a></li>
+                <button onclick="window.location.href='{% url 'admin:index' %}'">Admin</button>
             {% endif %}
             <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
             <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
