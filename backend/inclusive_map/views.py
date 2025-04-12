@@ -4,11 +4,7 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 import json
 from config.settings import API_KEY
-<<<<<<< HEAD
-=======
 from inclusive_map.forms import AccessibilitySuggestionForm
->>>>>>> roman
-from .models import Place
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from .models import Place, Review
@@ -56,10 +52,7 @@ def get_location_info(request):
 
 
 @csrf_exempt
-<<<<<<< HEAD
-=======
 @login_required
->>>>>>> roman
 def api_add_place(request):
     if request.method == 'POST':
         try:
@@ -73,12 +66,8 @@ def api_add_place(request):
                 wheelchair_accessible=bool(request.POST.get('wheelchair_accessible')),
                 accessible_toilet=bool(request.POST.get('accessible_toilet')),
                 easy_entrance=bool(request.POST.get('easy_entrance')),
-<<<<<<< HEAD
-                image=request.FILES.get('image')
-=======
                 image=request.FILES.get('image'),
                 created_by=request.user
->>>>>>> roman
             )
             place.save()
             return JsonResponse({'status': 'ok'})
@@ -142,10 +131,6 @@ def add_review(request, place_id):
             )
 
     return redirect(request.META.get('HTTP_REFERER', '/reviews/'))
-<<<<<<< HEAD
-    
-=======
-    
 @login_required
 def suggest_accessibility(request, place_id):
     place = get_object_or_404(Place, id=place_id)
@@ -160,4 +145,3 @@ def suggest_accessibility(request, place_id):
     else:
         form = AccessibilitySuggestionForm()
     return render(request, 'map/suggest_accessibility.html', {'form': form, 'place': place})
->>>>>>> roman
