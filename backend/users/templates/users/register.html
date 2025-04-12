@@ -1,34 +1,17 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Вхід / Реєстрація</title>
-  <link rel="stylesheet" href="{% static 'css/style_reg.css' %}" />
-</head>
+{% block title %}Реєстрація{% endblock %}
 
-<body>
+{% block content %}
+
+<div class="page-wrapper">
     <div class="form-container">
         <div class="toggle-buttons">
-            <button id="loginTab" class="active">Вхід</button>
             <button id="registerTab">Реєстрація</button>
         </div>
-
-        <!-- Форма входу -->
-        <form id="loginForm">
-            <label for="login-username">Логін</label>
-            <input type="text" id="login-username" required />
-
-            <label for="login-password">Пароль</label>
-            <input type="password" id="login-password" required />
-
-            <button type="submit">Увійти</button>
-        </form>
-
-        <!-- Форма реєстрації -->
            
-    <form id="registerForm" class="hidden" method="POST" action="{% url 'register' %}">
+    <form id="registerForm" method="POST" action="{% url 'register' %}">
      {% csrf_token %}
 
     <label for="register-name">Ім’я</label>
@@ -64,7 +47,5 @@
     </form>
  
     </div>
-
-    <script src="{% static 'js/script_reg.js' %}"></script>
-</body>
-</html>
+    </div>
+{% endblock %}

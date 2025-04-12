@@ -6,14 +6,19 @@ import json
 from config.settings import API_KEY
 from .models import Place
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
+from .models import Place, Review
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'map/main.html')
 
-
 def route_page(request):
     return render(request, 'map/route_map.html')
 
+def reviews_page(request):
+    places = Place.objects.all()
+    return render(request, 'map/reviews.html', {'places': places})
 
 @csrf_exempt
 def get_location_info(request):
@@ -93,8 +98,8 @@ def filter_places(request):
                 'address': place.address,
                 'latitude': place.latitude,
                 'longitude': place.longitude,
-                'rating': place.average_rating,
-                'reviews': place.total_reviews,
+                'rating': place.average_rating(),
+                'reviews': place.total_reviews(),
                 'image': place.image.url if place.image else None,
                 'has_ramp': place.has_ramp,
                 'has_tactile_elements': place.has_tactile_elements,
@@ -106,3 +111,22 @@ def filter_places(request):
         return JsonResponse(results, safe=False)
 
     return JsonResponse({'error': 'Invalid method'}, status=405)
+
+@login_required
+def add_review(request, place_id):
+    place = get_object_or_404(Place, id=place_id)
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        comment = request.POST.get('comment')
+
+        # Уникаємо повного дублювання (ідентичний коментар і рейтинг від того ж користувача)
+        if not Review.objects.filter(place=place, user=request.user, rating=rating, comment=comment).exists():
+            Review.objects.create(
+                place=place,
+                user=request.user,
+                rating=rating,
+                comment=comment,
+            )
+
+    return redirect(request.META.get('HTTP_REFERER', '/reviews/'))
+    

@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import CustomUser
+
 class Place(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=500)
@@ -19,6 +21,22 @@ class Place(models.Model):
 
     image = models.ImageField(upload_to='places/', blank=True, null=True)
 
+    def average_rating(self):
+        return self.reviews.aggregate(models.Avg('rating'))['rating__avg'] or 0
+
+    def total_reviews(self):
+        return self.reviews.count()
+
     def __str__(self):
         return self.name
 
+
+class Review(models.Model):
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} → {self.place.name} ({self.rating}⭐)"

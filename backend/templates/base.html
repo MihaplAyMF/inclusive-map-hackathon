@@ -16,15 +16,19 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/main_css.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/route.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_reg.css' %}" />
+
 </head>
-<body>
     <div class="top-bar">
         <div class="green-line"></div>         
-        <div class="logo">Main</div>
+        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
+        
         <div class="nav-links">
-            <button>FIND PLACES</button>
             <button onclick="window.location.href='{% url 'route_page' %}'">ROUTES</button>
             <button onclick="window.location.href='{% url 'reviews' %}'">REVIEWS</button>
+            <button onclick="window.location.href='{% url 'login' %}'">SIGN IN</button>
             <button onclick="window.location.href='{% url 'register' %}'">SIGN UP</button>
         </div>
     </div>
@@ -35,8 +39,11 @@
     <!-- Page-specific JS -->
     {% if request.path == '/routes/' %}
     <script src="{% static 'js/route_map.js' %}"></script>
+    {% elif request.path == '/reviews/' %}
+    <script src="{% static 'js/reviews.js' %}"></script>
     {% else %}
     <script src="{% static 'js/main_js.js' %}"></script>
     {% endif %}
+    
 </body>
 </html>

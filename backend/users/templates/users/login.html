@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}вхід/реєстрація{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+  <div class="form-container">
+      <div class="toggle-buttons">
+          <button id="loginTab" class="active">Вхід</button>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        <label for="username">Логін</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required>
+
+        {{ form.non_field_errors }}
+
+        <button type="submit">Увійти</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+

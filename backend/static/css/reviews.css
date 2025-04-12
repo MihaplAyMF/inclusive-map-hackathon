@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ddd;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .reviews-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .place-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: bold;
+  }
+  
+  .place-img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  .address, .rating, .reviews-section, .review-form {
+    margin-top: 10px;
+  }
+  
+  .review {
+    margin-bottom: 5px;
+    font-weight: normal;
+  }
+  
+  .review-user {
+    font-weight: bold;
+  }
+  
+  .review-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+  
+  .review-form select {
+    padding: 5px;
+    margin-top: 10px;
+  }
+  
+  .review-form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .review-form button:hover {
+    background-color: #1b5e20;
+  }
+  
+  .show-all-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #bbb;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .show-all-btn:hover {
+    background-color: #999;
+  }
+  
+  /* Модальне вікно */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 10px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .modal .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }

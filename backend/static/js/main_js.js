@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const mapContainer = document.getElementById('map');
+  if (!mapContainer) return;
+
   let marker;
   let markers = [];
 
@@ -10,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let selectedLat = null;
   let selectedLng = null;
 
-  // === КЛІК ПО МАПІ ===
   map.on('click', function (e) {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
@@ -18,9 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     selectedLng = lng;
 
     const addBtn = document.getElementById('add-place-btn');
-    if (addBtn) {
-      addBtn.style.display = 'inline-block';
-    }
+    if (addBtn) addBtn.style.display = 'inline-block';
 
     if (marker) {
       marker.setLatLng([lat, lng]);
@@ -31,17 +31,16 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/get-location-info/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lat: lat, lng: lng })
+      body: JSON.stringify({ lat, lng })
     })
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
         const placesDiv = document.getElementById('places');
         if (!placesDiv) return;
 
         placesDiv.innerHTML = '';
-        const maxPlacesToShow = 4;
-
-        data.slice(0, maxPlacesToShow).forEach(place => {
+        const max = 4;
+        data.slice(0, max).forEach(place => {
           const card = document.createElement('div');
           card.className = 'place-card';
           card.innerHTML = `
@@ -52,48 +51,45 @@ document.addEventListener('DOMContentLoaded', function () {
           placesDiv.appendChild(card);
 
           card.addEventListener('click', () => {
-            const detailsPanel = document.getElementById('details');
-            if (!detailsPanel) return;
+            const panel = document.getElementById('details');
+            if (!panel) return;
 
-            detailsPanel.innerHTML = `
+            panel.innerHTML = `
               <h3>Деталі місця: ${place.name}</h3>
               <p>Адреса: ${place.vicinity}</p>
               <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.user_ratings_total || 0} reviews)</p>
-              <p>Час роботи: ${place.opening_hours && place.opening_hours.weekday_text ? place.opening_hours.weekday_text.join(', ') : 'Не вказано'}</p>
+              <p>Час роботи: ${place.opening_hours?.weekday_text?.join(', ') || 'Не вказано'}</p>
             `;
           });
         });
       });
   });
 
-  // === ДОДАВАННЯ МІСЦЯ ===
   const form = document.getElementById('add-place-form');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const formData = new FormData(form);
-      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
       fetch('/api/add-place/', {
         method: 'POST',
-        headers: { 'X-CSRFToken': csrfToken },
+        headers: { 'X-CSRFToken': csrf },
         body: formData
       })
         .then(res => res.json())
-        .then(data => {
+        .then(() => {
           document.getElementById('form-status').innerText = 'Місце додано успішно!';
           form.reset();
           setTimeout(window.closeModal, 2000);
-          fetchFilteredPlaces(); // оновити мапу
+          fetchFilteredPlaces();
         })
-        .catch(err => {
+        .catch(() => {
           document.getElementById('form-status').innerText = 'Помилка під час додавання.';
         });
     });
   }
 
-  // === ФІЛЬТРИ ===
   function getActiveFilters() {
     const filters = {};
     document.querySelectorAll('.filter-btn.active').forEach(btn => {
@@ -122,62 +118,60 @@ document.addEventListener('DOMContentLoaded', function () {
         markers = [];
 
         data.forEach(place => {
-          const popupContent = `
+          const popup = `
             <strong>${place.name}</strong><br>
             ${place.address}<br>
             ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)
           `;
 
-          const marker = L.marker([place.latitude, place.longitude])
-  .addTo(map)
-  .bindPopup(popupContent)
-  .on('click', () => {
-    const detailsPanel = document.getElementById('details');
-    if (!detailsPanel) return;
+          const m = L.marker([place.latitude, place.longitude])
+            .addTo(map)
+            .bindPopup(popup)
+            .on('click', () => {
+              const panel = document.getElementById('details');
+              if (!panel) return;
 
-    detailsPanel.innerHTML = `
-      <h3>Деталі місця: ${place.name}</h3>
-      <p>Адреса: ${place.address}</p>
-      <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)</p>
-      <p>Доступність:</p>
-      <ul>
-        ${place.has_ramp ? '<li>✅ Пандус</li>' : ''}
-        ${place.wheelchair_accessible ? '<li>✅ Доступ для візка</li>' : ''}
-        ${place.has_tactile_elements ? '<li>✅ Тактильні елементи</li>' : ''}
-        ${place.accessible_toilet ? '<li>✅ Адаптований туалет</li>' : ''}
-        ${place.easy_entrance ? '<li>✅ Зручний вхід</li>' : ''}
-      </ul>
-      ${place.image ? `<img src="${place.image}" width="400" style="margin-top:12px;border-radius:12px;">` : ''}
-    `;
-  });
-          markers.push(marker);
+              panel.innerHTML = `
+                <h3>Деталі місця: ${place.name}</h3>
+                <p>Адреса: ${place.address}</p>
+                <p>Рейтинг: ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)</p>
+                <p>Доступність:</p>
+                <ul>
+                  ${place.has_ramp ? '<li>✅ Пандус</li>' : ''}
+                  ${place.wheelchair_accessible ? '<li>✅ Доступ для візка</li>' : ''}
+                  ${place.has_tactile_elements ? '<li>✅ Тактильні елементи</li>' : ''}
+                  ${place.accessible_toilet ? '<li>✅ Адаптований туалет</li>' : ''}
+                  ${place.easy_entrance ? '<li>✅ Зручний вхід</li>' : ''}
+                </ul>
+                ${place.image ? `<img src="${place.image}" width="400" style="margin-top:12px;border-radius:12px;">` : ''}
+              `;
+            });
+
+          markers.push(m);
         });
       });
   }
 
-  document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      button.classList.toggle('active');
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
       fetchFilteredPlaces();
     });
   });
 
-  // === ПОШУК ===
   const searchButton = document.querySelector('.search-bar button');
   if (searchButton) {
     searchButton.addEventListener('click', () => {
       const searchInput = document.querySelector('.search-bar input');
-      if (!searchInput) return;
+      const query = searchInput.value;
 
-      const searchQuery = searchInput.value;
-
-      if (searchQuery) {
+      if (query) {
         fetch('/search-places/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: searchQuery })
+          body: JSON.stringify({ query })
         })
-          .then(response => response.json())
+          .then(res => res.json())
           .then(data => {
             const placesDiv = document.getElementById('places');
             placesDiv.innerHTML = '';
@@ -197,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // === МОДАЛЬНЕ ВІКНО ===
+  // === Модальне вікно додавання ===
   window.openModal = function () {
     const modal = document.getElementById('add-place-modal');
     if (!modal) return;
@@ -214,6 +208,39 @@ document.addEventListener('DOMContentLoaded', function () {
     if (modal) modal.style.display = 'none';
   };
 
-  // === ПЕРШЕ ЗАВАНТАЖЕННЯ ФІЛЬТРОВАНИХ МІСЦЬ ===
+  // === Модальні вікна для відгуків ===
+  document.querySelectorAll('.show-all-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const placeId = btn.getAttribute('data-place');
+      const modal = document.getElementById(`modal-${placeId}`);
+      if (modal) modal.style.display = 'flex';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.show-all-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const placeId = btn.getAttribute('data-place');
+        const modal = document.getElementById(`modal-${placeId}`);
+        if (modal) modal.style.display = 'flex';
+      });
+    });
+  
+    document.querySelectorAll('.close').forEach(closeBtn => {
+      closeBtn.addEventListener('click', () => {
+        const placeId = closeBtn.getAttribute('data-place');
+        const modal = document.getElementById(`modal-${placeId}`);
+        if (modal) modal.style.display = 'none';
+      });
+    });
+  
+    window.addEventListener('click', function (event) {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) modal.style.display = 'none';
+      });
+    });
+  });
+
+  // === Початкове завантаження місць ===
   fetchFilteredPlaces();
 });
