@@ -1,6 +1,6 @@
 from django.db import models
 
-from users.models import UserProfile
+from users.models import CustomUser
 
 class Place(models.Model):
     name = models.CharField(max_length=255)
@@ -33,7 +33,7 @@ class Place(models.Model):
 
 class Review(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='reviews')
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
     comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
