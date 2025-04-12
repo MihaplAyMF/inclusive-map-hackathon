@@ -1,11 +1,15 @@
 # users/views.py
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render
-from django.contrib import messages
+from django.contrib import auth, messages
+from django.urls import reverse
 from .forms import RegisterForm
+
+def home(request):
+    return render(request, 'base.html')
 
 def register_view(request):
     if request.method == 'POST':
@@ -36,6 +40,10 @@ def login_view(request):
             return render(request, 'users/login.html', {'error': 'Невірні дані для входу'})
     return render(request, 'users/login.html')
 
+@login_required
+def logout_view(request):
+    messages.success(request, f'{request.user.username}, Ви вийшли з акаунта')
+    auth.logout(request)
+    return redirect('home')
 
-def home(request):
-    return render(request, 'base.html')
+
