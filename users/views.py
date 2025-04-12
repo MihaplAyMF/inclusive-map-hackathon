@@ -6,7 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.contrib import messages
 from django.urls import reverse
-from .forms import RegisterForm
+
+from inclusive_map.models import AccessibilitySuggestion, Place
+from .forms import ProfileUpdateForm, RegisterForm
 from django.contrib import auth, messages
 
 def home(request):
@@ -41,6 +43,27 @@ def login_view(request):
             # Якщо користувача не знайдено або неправильний пароль
             return render(request, 'users/login.html', {'error': 'Невірні дані для входу'})
     return render(request, 'users/login.html')
+
+@login_required
+def profile_view(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=user)
+
+    user_places = Place.objects.filter(created_by=user)
+    user_suggestions = AccessibilitySuggestion.objects.filter(user=user)
+
+    return render(request, 'users/profile.html', {
+        'form': form,
+        'user_places': user_places,
+        'user_suggestions': user_suggestions
+    })
 
 @login_required
 def logout(request):

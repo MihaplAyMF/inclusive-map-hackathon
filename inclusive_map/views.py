@@ -53,6 +53,7 @@ def get_location_info(request):
 
 
 @csrf_exempt
+@login_required
 def api_add_place(request):
     if request.method == 'POST':
         try:
@@ -66,7 +67,8 @@ def api_add_place(request):
                 wheelchair_accessible=bool(request.POST.get('wheelchair_accessible')),
                 accessible_toilet=bool(request.POST.get('accessible_toilet')),
                 easy_entrance=bool(request.POST.get('easy_entrance')),
-                image=request.FILES.get('image')
+                image=request.FILES.get('image'),
+                created_by=request.user
             )
             place.save()
             return JsonResponse({'status': 'ok'})

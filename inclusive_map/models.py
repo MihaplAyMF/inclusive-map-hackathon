@@ -21,6 +21,8 @@ class Place(models.Model):
 
     image = models.ImageField(upload_to='places/', blank=True, null=True)
 
+    created_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='places')
+
     def average_rating(self):
         return self.reviews.aggregate(models.Avg('rating'))['rating__avg'] or 0
 
@@ -57,6 +59,7 @@ class AccessibilitySuggestion(models.Model):
         ('approved', 'Схвалено'),
         ('rejected', 'Відхилено'),
     )
+
     status = models.CharField(max_length=10, choices=APPROVAL_STATUS, default='pending')
 
     def save(self, *args, **kwargs):

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Профіль{% endblock %}
+{% block content %}
+<div class="reviews-container">
+  <h2>Профіль користувача</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зберегти зміни</button>
+  </form>
+
+  <hr>
+  <h3>Додані вами місця:</h3>
+  <ul>
+    {% for place in user_places %}
+      <li><strong>{{ place.name }}</strong> — {{ place.address }}</li>
+    {% empty %}
+      <li>Ви ще не додали жодного місця.</li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+  <h3>Ваші пропозиції щодо змін доступності:</h3>
+  <ul>
+    {% for suggestion in user_suggestions %}
+      <li>
+        {{ suggestion.place.name }} — {{ suggestion.created_at|date:"d.m.Y" }}
+        (Статус: {{ suggestion.status }})
+      </li>
+    {% empty %}
+      <li>Немає поданих пропозицій.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
