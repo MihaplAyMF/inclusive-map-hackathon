@@ -1,10 +1,10 @@
-
 /* ===== СТИЛІ ДЛЯ ФОРМИ ВХОДУ / РЕЄСТРАЦІЇ ===== */
 
 .page-wrapper {
   width: 100%;
   max-width: 500px;
-  margin: 80px auto 40px; /* Відступ зверху, щоб не лізло на top-bar */
+  margin: 80px auto 40px;
+  /* Відступ зверху, щоб не лізло на top-bar */
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -62,7 +62,7 @@ select {
 
 .checkbox-group {
   display: flex;
-  align-items: center;
+  align-items: left;
   margin-top: 1rem;
 }
 
@@ -97,4 +97,3 @@ button.register-button:hover {
 .hidden {
   display: none;
 }
- 

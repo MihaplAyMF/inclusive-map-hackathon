@@ -13,6 +13,9 @@
     <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
     <button class="filter-btn">TACTILE ELEMENT</button>
     <button class="filter-btn">EASY ENTRANCE</button>
+    <div class="button-container">
+      <button class="button" id="add-place-btn" onclick="openModal()" style="display: none; position: fixed; top: 69px; right: 700px; z-index: 1000;">Додати місце</button>
+    </div>
   </div>
 
   <div class="container">
@@ -24,7 +27,6 @@
     </div>
   </div>
 
-  <button id="add-place-btn" style="display: none;">Додати місце</button>
 
   <div id="add-place-modal" class="modal" style="display: none;">
     <div class="modal-content">
@@ -46,7 +48,7 @@
         <input type="file" name="image">
         <input type="hidden" name="latitude" id="input-lat">
         <input type="hidden" name="longitude" id="input-lng">
-        <button type="submit">Зберегти</button>
+        <button class="button" type="submit" style="color: black; padding: 15px; border-radius: 50px;">Зберегти</button>
       </form>
       <p id="form-status"></p>
     </div>

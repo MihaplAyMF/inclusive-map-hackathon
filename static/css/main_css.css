@@ -20,6 +20,99 @@ body {
   background-color: #F5F5F5;
 }
 
+.button {
+  padding: 10px 20px;
+  /* Внутрішні відступи */
+  border-radius: 10px;
+  /* Закруглені кути */
+  background-color: #ffffff;
+  /* Білий фон */
+  font-weight: bold;
+  /* Жирний текст */
+  border: none;
+  /* Без рамки */
+  outline: none;
+  /* Без обведення */
+  color: rgb(0, 0, 0);
+  /* Чорний текст */
+  cursor: pointer;
+  /* Курсор у вигляді руки */
+  position: relative;
+  /* Для псевдоелементів */
+  z-index: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Плавний перехід кольорів */
+}
+
+.button::after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+
+.button::before {
+  content: '';
+  background: linear-gradient(45deg,
+      #ff0000,
+      /* Червоний */
+      #ff7f00,
+      /* Оранжевий */
+      #ffff00,
+      /* Жовтий */
+      #00ff00,
+      /* Зелений */
+      #00ffff,
+      /* Блакитний */
+      #0000ff,
+      /* Синій */
+      #7f00ff,
+      /* Фіолетовий */
+      #ff0000
+      /* Повернення до червоного для безшовності */
+    );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(8px);
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+  opacity: 0;
+  animation: glowing 30s linear infinite;
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button:active {
+  transform: scale(0.98);
+  /* Легке зменшення при натисканні */
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 400% 0%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 .top-bar {
   position: relative;
   z-index: 1;
@@ -177,7 +270,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #3e9fff;
+  background-color: #9da2a7;
   border-radius: 8px;
 }
 
@@ -195,35 +288,52 @@ a {
   color: var(--navbar-text, #333);
 }
 
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: left;
+  gap: 10px;
+  font-size: 15px;
+  color: #000;
+  cursor: pointer;
+}
+
+.services {
+  position: relative;
+  display: inline-block;
+}
+
 .drop-down {
   position: absolute;
-  padding: 8px 10px;
-  margin: 12px -15px;
-  /* Регулювання відстані між висувним меню і текстом main(перший параметр), регулювання ширини дропдаун меню другий параметр */
+  top: 100%;
+  /* під кнопкою */
+  left: 50%;
+  /* центр по горизонталі */
+  transform: translateX(-50%);
+  /* центр вирівнювання */
+  padding: 8px 0;
   background: antiquewhite;
   color: black;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   opacity: 0;
-  /* Спочатку приховане */
   visibility: hidden;
-  /* Ховаємо */
-  transform: translateY(-5px);
-  /* Зсув вгору */
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  /* Плавна анімація */
-  line-height: 2;
-  /* Збільшує відстань між текстом */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  min-width: 120px;
+  z-index: 1000;
+  text-align: center;
 }
 
 .services:hover .drop-down {
-  display: block;
-  /* Залишаємо для сумісності */
   opacity: 1;
-  /* Показуємо */
   visibility: visible;
-  transform: translateY(0);
-  /* Повертаємо на місце */
+  transform: translateX(-50%) translateY(0);
+  /* плавне вирівнювання */
 }
 
 .drop-down li {
@@ -233,7 +343,7 @@ a {
 }
 
 .drop-down li:hover {
-  background-color: #3e9fff;
+  background-color: #9da2a7;
   /* світло-блакитний */
   color: #000000;
   /* чорний текст */
@@ -469,12 +579,6 @@ a {
 }
 
 
-.reviews-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-}
-
 .reviews-list {
   background: white;
   padding: 20px;
@@ -514,26 +618,13 @@ a {
 
 .modal-content input[type="text"],
 .modal-content input[type="file"] {
-  width: 100%;
+  width: 95%;
   padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 15px;
 }
 
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.checkbox-group label {
-  font-size: 14px;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
 
 .modal-content input[type="checkbox"] {
   transform: scale(1.2);
