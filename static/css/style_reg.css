@@ -61,7 +61,6 @@ select {
 }
 
 .checkbox-group {
-  display: flex;
   align-items: left;
   margin-top: 1rem;
 }

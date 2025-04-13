@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
     const a = Math.sin(dLat / 2) ** 2 +
-              Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-              Math.sin(dLon / 2) ** 2;
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) ** 2;
     return 2 * R * Math.sqrt(a);
   }
 
@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
         <strong>${place.name}</strong><br>
         ${place.address}<br>
         ⭐ ${place.rating || 'N/A'} (${place.reviews || 0} reviews)<br>
-        <button onclick="removeMarker(this)">🗑 Видалити</button>
       `);
       markers.push(marker);
     });
@@ -122,40 +121,40 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       body: JSON.stringify(filters)
     })
-    .then(res => res.json())
-    .then(data => {
-      const filtered = [];
+      .then(res => res.json())
+      .then(data => {
+        const filtered = [];
 
-      data.forEach(place => {
-        const dist = pointToLineDistance(
-          [start.lat, start.lng],
-          [end.lat, end.lng],
-          [place.latitude, place.longitude]
-        );
-        if (dist <= 200) filtered.push(place);
-      });
+        data.forEach(place => {
+          const dist = pointToLineDistance(
+            [start.lat, start.lng],
+            [end.lat, end.lng],
+            [place.latitude, place.longitude]
+          );
+          if (dist <= 200) filtered.push(place);
+        });
 
-      const points = filtered.slice(0, 5);
-      const waypoints = [L.latLng(start.lat, start.lng)];
-      points.forEach(p => waypoints.push(L.latLng(p.latitude, p.longitude)));
-      waypoints.push(L.latLng(end.lat, end.lng));
+        const points = filtered.slice(0, 5);
+        const waypoints = [L.latLng(start.lat, start.lng)];
+        points.forEach(p => waypoints.push(L.latLng(p.latitude, p.longitude)));
+        waypoints.push(L.latLng(end.lat, end.lng));
 
-      if (routeControl) map.removeControl(routeControl);
+        if (routeControl) map.removeControl(routeControl);
 
-      routeControl = L.Routing.control({
-        waypoints: waypoints,
-        routeWhileDragging: false,
-        createMarker: () => null
-      }).on('routesfound', function (e) {
-        const summary = e.routes[0].summary;
-        const instructions = e.routes[0].instructions;
+        routeControl = L.Routing.control({
+          waypoints: waypoints,
+          routeWhileDragging: false,
+          createMarker: () => null
+        }).on('routesfound', function (e) {
+          const summary = e.routes[0].summary;
+          const instructions = e.routes[0].instructions;
 
-        document.getElementById('route-instructions').innerHTML = `
-          <strong>Маршрут: ${(summary.totalDistance/1000).toFixed(2)} км, ~${(summary.totalTime/60).toFixed(0)} хв</strong>
+          document.getElementById('route-instructions').innerHTML = `
+          <strong>Маршрут: ${(summary.totalDistance / 1000).toFixed(2)} км, ~${(summary.totalTime / 60).toFixed(0)} хв</strong>
           <ol>${instructions.map(i => `<li>${i.text}</li>`).join('')}</ol>
         `;
 
-        document.getElementById('route-places-details').innerHTML = `
+          document.getElementById('route-places-details').innerHTML = `
           <h4>Місця вздовж маршруту:</h4>
           ${points.map(p => `
             <div class="place-detail">
@@ -165,8 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
           `).join('')}
         `;
-      }).addTo(map);
-    });
+        }).addTo(map);
+      });
   }
 
   function fetchFilteredPlaces() {
@@ -179,8 +178,8 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       body: JSON.stringify(filters)
     })
-    .then(res => res.json())
-    .then(data => displayMarkers(data));
+      .then(res => res.json())
+      .then(data => displayMarkers(data));
   }
 
   map.on('click', function (e) {

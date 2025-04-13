@@ -57,6 +57,15 @@ def get_location_info(request):
 def api_add_place(request):
     if request.method == 'POST':
         try:
+            name = request.POST.get('name')
+            address = request.POST.get('address')
+            latitude = request.POST.get('latitude')
+            longitude = request.POST.get('longitude')
+
+            # Перевірка на дублювання місця
+            if Place.objects.filter(name=name, address=address, latitude=latitude, longitude=longitude).exists():
+                return JsonResponse({'status': 'duplicate', 'message': 'Таке місце вже існує'}, status=409)
+            
             place = Place(
                 name=request.POST.get('name'),
                 address=request.POST.get('address'),
