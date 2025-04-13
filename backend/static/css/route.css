@@ -29,14 +29,13 @@ body {
     color: white;
   }
   
-  #map {
-    width: 60%;
+  .map {
     height: 600px;
-    margin-left: 20px;
+    margin: 0px 0px 20px 20px;
     border-radius: 12px;
     display: block;
   }
-  
+
   .container {
     width: 100%;
     padding: 0;
@@ -57,4 +56,8 @@ body {
     line-height: 1.5;
   }
   
-  
+@media (max-width: 768px) {
+    .map {
+      margin: 0px 20px 20px 20px;
+    }
+}

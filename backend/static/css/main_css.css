@@ -235,55 +235,78 @@ body {
 
 
 .navbar {
-  top: 0;
-  left: 0;
-  margin: 0;
-  padding: 8px 24px;
-  background: white;
-  border-radius: 16px;
-  width: 100%;
-  height: 50px;
-  box-sizing: border-box;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.nav-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .nav-links {
-    height: 100%;
-  display: flex;
-  gap: 32px;
-}
-
-.nav-link,
-.drop-down {
   list-style: none;
-  padding: 8px 16px;
-  font-weight: 600;
-  cursor: pointer;
-      margin-bottom: 4px;
-
+  display: flex;
+  gap: 20px;
 }
 
 .nav-link a {
-  display: block;
-  padding: 8px 16px;
-  color: black;
+  color: white;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
-.nav-link:hover {
-  background-color: #9da2a7;
+.nav-link a:hover {
+  background-color: #555; /* або будь-який інший сірий */
 }
 
-.nav-link:hover a {
-  color: rgb(0, 0, 0);
+
+.menu-toggle {
+  display: none;
+  background: none;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
 }
 
-.nav-link {
-  position: relative;
-  /* Для коректного позиціонування .drop-down */
+/* Drop-down styles */
+.services .drop-down {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
+.services:hover .drop-down {
+  display: block;
+}
+
+/* === MEDIA QUERY === */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    display: none; /* сховати меню за замовчуванням */
+    width: 100%;
+    background-color: #333;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
 
 a {
   text-decoration: none;
@@ -364,7 +387,7 @@ a {
 
 .filters-block
 {
-    width: 57%;
+    width: 60%;
 }
 
 /* додай опис тільки в цей коментар */
@@ -476,17 +499,16 @@ a {
 }
 
 .container {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
+    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
 }
 
 
+
 .places-list {
-  width: 20%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .place-card {
@@ -499,9 +521,14 @@ a {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   position: relative;
-  height: 25%;
-  /* Додаємо для псевдоелементів */
+  margin: 0px 20px 20px 20px;
   z-index: 1;
+  height: 25%;
+}
+
+.adaptive-height
+{
+    height: 95%;
 }
 
 .place-card::after {
@@ -566,14 +593,15 @@ a {
 }
 
 .details-panel {
-  width: 20%;
   background: white;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 20px;
-  margin-right: 20px
+  border: 1px solid black;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .details-panel h3 {
@@ -675,4 +703,33 @@ a {
   margin: 10px 0;
   border-left: 5px solid #2e7d32;
   border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .details-panel
+  {
+    margin: 20px;
+    }
+    .filter-btn
+    {
+        width: 100%;
+        margin: 5px;
+    }
+    .filters-block
+    {
+        width: 100%;
+    }
+    .button
+    {
+        width: 100%;
+        margin: 5px;
+        float: left;
+    }
+    .place-card
+    {
+      margin: 10px 20px;
+    }
 }
