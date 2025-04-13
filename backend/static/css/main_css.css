@@ -190,6 +190,25 @@ a {
   color: white;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .filters {
   display: flex;
   gap: 10px;
@@ -286,6 +305,14 @@ a {
 .filter-btn:not(.active) {
   transition: background-color 0.5s ease, color 0.5s ease; /* Плавний перехід до початкових кольорів */
 }
+
+
+
+
+
+
+
+
 
 .container {
   display: flex;
@@ -394,6 +421,7 @@ a {
   margin-top: 0;
 }
 
+
 .reviews-container {
   max-width: 1200px;
   margin: 20px auto;
@@ -470,6 +498,7 @@ a {
   color: white;
   border: none;
   border-radius: 8px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
