@@ -13,9 +13,7 @@
     <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
     <button class="filter-btn">TACTILE ELEMENT</button>
     <button class="filter-btn">EASY ENTRANCE</button>
-    <div class="button-container">
-      <button class="button" id="add-place-btn" onclick="openModal()" style="display: none; position: fixed; top: 69px; right: 700px; z-index: 1000;">Додати місце</button>
-    </div>
+    <button class="button" id="add-place-btn" onclick="openModal()">Додати місце</button>
   </div>
 
   <div class="container">
@@ -54,5 +52,6 @@
     </div>
   </div>
 {% endblock %}
+<script src="{% static 'js/main_js.js' %}"></script>
 <script src="{% static 'js/accessible_places.js' %}"></script>
 

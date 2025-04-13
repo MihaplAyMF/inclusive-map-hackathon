@@ -21,37 +21,32 @@
     <link rel="stylesheet" href="{% static 'css/style_reg.css' %}" />
 </head>
 <body>
-    <div class="top-bar">
-        <div class="green-line"></div>         
-        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
-        
-        <div class="nav-links">
-            <ul class="nav-links">
-                {% if user.is_admin or user.is_staff %}
-                  <li class="nav-link">
-                    <a href="{% url 'admin:index' %}">Admin</a>
-                  </li>
-                {% endif %}
-                
-                <li class="nav-link"><a href="{% url 'route_page' %}">Routes</a></li>
-                <li class="nav-link"><a href="{% url 'reviews' %}">Reviews</a></li>
-              
-                {% if not user.is_authenticated %}
-                  <li class="nav-link"><a href="{% url 'register' %}">Sign Up</a></li>
-                  <li class="nav-link"><a href="{% url 'login' %}">Sign In</a></li>
-                {% else %}
-                  <li class="nav-link services">
-                    <a href="#">User</a>
-                    <ul class="drop-down">
-                      <li><a href="{% url 'profile' %}">Profile</a></li>
-                      <li><a href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                  </li>
-                {% endif %}
-              </ul>   
-            </div>
-            
-    </div>
+  <div class="top-bar">
+    <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
+  
+    <div class="burger" id="burger">&#9776;</div>
+  
+    <ul class="nav-links" id="nav-menu">
+      {% if user.is_admin or user.is_staff %}
+        <li class="nav-link"><a href="{% url 'admin:index' %}">Admin</a></li>
+      {% endif %}
+      <li class="nav-link"><a href="{% url 'route_page' %}">Routes</a></li>
+      <li class="nav-link"><a href="{% url 'reviews' %}">Reviews</a></li>
+  
+      {% if not user.is_authenticated %}
+        <li class="nav-link"><a href="{% url 'register' %}">Sign Up</a></li>
+        <li class="nav-link"><a href="{% url 'login' %}">Sign In</a></li>
+      {% else %}
+        <li class="nav-link services">
+          <a href="#">User</a>
+          <ul class="drop-down">
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
 
     <!-- Content block -->
     {% block content %}{% endblock %}
@@ -65,5 +60,15 @@
     <script src="{% static 'js/main_js.js' %}"></script>
     {% endif %}
     
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const burger = document.getElementById('burger');
+        const navMenu = document.getElementById('nav-menu');
+    
+        burger.addEventListener('click', function () {
+          navMenu.classList.toggle('show');
+        });
+      });
+    </script>
 </body>
 </html>

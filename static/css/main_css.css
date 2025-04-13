@@ -41,6 +41,7 @@ body {
   /* Для псевдоелементів */
   z-index: 1;
   transition: background-color 0.3s ease, color 0.3s ease;
+  float: right;
   /* Плавний перехід кольорів */
 }
 
@@ -114,20 +115,14 @@ body {
 }
 
 .top-bar {
-  position: relative;
-  z-index: 1;
-  height: var(--navbar-height);
+  position: relative; /* Це потрібно для правильного позиціонування меню */
   display: flex;
-  background-color: var(--navbar-bg);
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  height: 60px;
   padding: 0 20px;
-  color: var(--navbar-text);
-  font-family: 'Times New Roman', serif;
-  /* box-shadow: 0px 1px 3px #000000; */
-  /* Легка тінь*/
-  /* overflow: hidden; */
-  /* Закоментоване щоб псевдоелементи не обрізалися */
+  background-color: white;
+  z-index: 1000;
 }
 
 .top-bar::before {
@@ -471,7 +466,7 @@ a {
 
 .container {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr;
   gap: 20px;
 }
 
@@ -481,12 +476,6 @@ a {
   }
 }
 
-#map {
-  width: 50%;
-  height: 500px;
-  border-radius: 40px;
-  overflow: hidden;
-}
 
 .places-list {
   display: flex;
@@ -677,4 +666,88 @@ a {
   margin: 10px 0;
   border-left: 5px solid #2e7d32;
   border-radius: 6px;
+}
+
+.burger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    z-index: 999;
+    border-radius: 8px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-link {
+    margin: 10px 0;
+  }
+  .filters{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  }
+}
+
+
+.filter-btn {
+  flex: 1 1 auto;
+  min-width: 160px;
+  max-width: 220px;
+  padding: 12px;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-container {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+#add-place-btn {
+  position: relative;
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .filter-btn {
+    min-width: 100%;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+
+  #add-place-btn {
+    width: 100%;
+  }
 }
