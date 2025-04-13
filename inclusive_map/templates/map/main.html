@@ -9,15 +9,17 @@
 
 {% block content %}
   <div class="filters">
+    <div class="filters-block">
     <button class="filter-btn">VISION IMPAIRMENT</button>
     <button class="filter-btn">WHEELCHAIR ACCESSIBLE</button>
     <button class="filter-btn">TACTILE ELEMENT</button>
     <button class="filter-btn">EASY ENTRANCE</button>
-    <button class="button" id="add-place-btn" onclick="openModal()">Додати місце</button>
+      <button class="button" id="add-place-btn" onclick="openModal()" style="display: none;">Додати місце</button>
+    </div>
   </div>
 
   <div class="container">
-    <div id="map"></div>
+    <div id="map" class="map"></div>
     <div class="places-list" id="places"></div>
     <div class="details-panel" id="details">
       <h3>Деталі місця</h3>
@@ -38,7 +40,6 @@
         <div class="checkbox-group">
           <label><input type="checkbox" name="has_ramp"> Пандус</label>
           <label><input type="checkbox" name="has_tactile_elements"> Тактильні елементи</label>
-          <label><input type="checkbox" name="wheelchair_accessible"> Доступ для візка</label>
           <label><input type="checkbox" name="accessible_toilet"> Адаптований туалет</label>
           <label><input type="checkbox" name="easy_entrance"> Зручний вхід</label>
         </div>
@@ -52,6 +53,4 @@
     </div>
   </div>
 {% endblock %}
-<script src="{% static 'js/main_js.js' %}"></script>
 <script src="{% static 'js/accessible_places.js' %}"></script>
-

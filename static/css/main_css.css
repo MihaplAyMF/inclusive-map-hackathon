@@ -41,8 +41,8 @@ body {
   /* Для псевдоелементів */
   z-index: 1;
   transition: background-color 0.3s ease, color 0.3s ease;
-  float: right;
   /* Плавний перехід кольорів */
+  float: right;
 }
 
 .button::after {
@@ -115,14 +115,20 @@ body {
 }
 
 .top-bar {
-  position: relative; /* Це потрібно для правильного позиціонування меню */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  padding: 0 20px;
-  background-color: white;
+  position: relative;
   z-index: 1000;
+  height: var(--navbar-height);
+  display: flex;
+  background-color: var(--navbar-bg);
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  color: var(--navbar-text);
+  font-family: 'Times New Roman', serif;
+  /* box-shadow: 0px 1px 3px #000000; */
+  /* Легка тінь*/
+  /* overflow: hidden; */
+  /* Закоментоване щоб псевдоелементи не обрізалися */
 }
 
 .top-bar::before {
@@ -229,6 +235,7 @@ body {
 
 
 .navbar {
+  position: relative;
   top: 0;
   left: 0;
   margin: 0;
@@ -241,6 +248,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 
 .nav-links {
   display: flex;
@@ -283,11 +291,6 @@ a {
   color: var(--navbar-text, #333);
 }
 
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
 .checkbox-group label {
   display: flex;
@@ -349,12 +352,61 @@ a {
   /* чорний текст */
 }
 
+.burger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    z-index: 999;
+    border-radius: 8px;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-link {
+    margin: 10px 0;
+  }
+
+  .filters{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  }
+}
+
 .filters {
   display: flex;
   gap: 10px;
   padding: 10px 20px;
 }
 
+.filters-block
+{
+    width: 60%;
+}
 
 /* додай опис тільки в цей коментар */
 .filter-btn {
@@ -412,7 +464,7 @@ a {
   height: calc(100% + 4px);
   filter: blur(8px);
   transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 0px;
   opacity: 0;
   animation: glowing 30s linear infinite;
 }
@@ -465,22 +517,16 @@ a {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  gap: 20px;
+    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
 }
 
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
 
 
 .places-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .place-card {
@@ -493,8 +539,14 @@ a {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   position: relative;
-  /* Додаємо для псевдоелементів */
+  margin: 0px 20px 20px 20px;
   z-index: 1;
+  height: 25%;
+}
+
+.adaptive-height
+{
+    height: 95%;
 }
 
 .place-card::after {
@@ -565,6 +617,9 @@ a {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 20px;
+  border: 1px solid black;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .details-panel h3 {
@@ -668,86 +723,31 @@ a {
   border-radius: 6px;
 }
 
-.burger {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-  margin-left: auto;
-}
-
 @media (max-width: 768px) {
-  .burger {
-    display: block;
+  .container {
+    grid-template-columns: 1fr;
   }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    z-index: 999;
-    border-radius: 8px;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-link {
-    margin: 10px 0;
-  }
-  .filters{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px 20px;
-  position: relative;
-  }
-}
-
-
-.filter-btn {
-  flex: 1 1 auto;
-  min-width: 160px;
-  max-width: 220px;
-  padding: 12px;
-  text-align: center;
-  border-radius: 12px;
-  font-weight: bold;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.button-container {
-  flex: 1 1 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-#add-place-btn {
-  position: relative;
-  display: none !important;
-}
-
-@media (max-width: 600px) {
-  .filter-btn {
-    min-width: 100%;
-  }
-
-  .button-container {
-    justify-content: center;
-  }
-
-  #add-place-btn {
-    width: 100%;
-  }
+  .details-panel
+  {
+    margin: 20px;
+    }
+    .filter-btn
+    {
+        width: 100%;
+        margin: 5px;
+    }
+    .filters-block
+    {
+        width: 100%;
+    }
+    .button
+    {
+        width: 100%;
+        margin: 5px;
+        float: left;
+    }
+    .place-card
+    {
+      margin: 10px 20px;
+    }
 }
