@@ -30,9 +30,9 @@ body {
   }
   
   #map {
-    width: 100%;
+    width: 60%;
     height: 600px;
-    margin: 20px auto;
+    margin-left: 20px;
     border-radius: 12px;
     display: block;
   }

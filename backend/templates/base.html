@@ -22,15 +22,14 @@
 </head>
 <body>
     <div class="top-bar">
-        <div class="green-line"></div>         
-        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Main</div>
+        <div class="logo" onclick="window.location.href='{% url 'index' %}'">Home</div>
         
         <div class="nav-links">
-            <ul class="nav-links">
+            <div class="nav-links">
                 {% if user.is_admin or user.is_staff %}
-                  <li class="nav-link">
+                  <div class="nav-link">
                     <a href="{% url 'admin:index' %}">Admin</a>
-                  </li>
+                  </div>
                 {% endif %}
                 
                 <li class="nav-link"><a href="{% url 'route_page' %}">Routes</a></li>
@@ -48,7 +47,7 @@
                     </ul>
                   </li>
                 {% endif %}
-              </ul>   
+              </div>   
             </div>
             
     </div>

@@ -42,6 +42,7 @@ body {
   z-index: 1;
   transition: background-color 0.3s ease, color 0.3s ease;
   /* Плавний перехід кольорів */
+  float: right;
 }
 
 .button::after {
@@ -121,7 +122,7 @@ body {
   background-color: var(--navbar-bg);
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding-left: 20px;
   color: var(--navbar-text);
   font-family: 'Times New Roman', serif;
   /* box-shadow: 0px 1px 3px #000000; */
@@ -248,9 +249,9 @@ body {
 }
 
 .nav-links {
+    height: 100%;
   display: flex;
   gap: 32px;
-  margin-left: auto;
 }
 
 .nav-link,
@@ -259,6 +260,8 @@ body {
   padding: 8px 16px;
   font-weight: 600;
   cursor: pointer;
+      margin-bottom: 4px;
+
 }
 
 .nav-link a {
@@ -271,7 +274,6 @@ body {
 
 .nav-link:hover {
   background-color: #9da2a7;
-  border-radius: 8px;
 }
 
 .nav-link:hover a {
@@ -360,6 +362,10 @@ a {
   padding: 10px 20px;
 }
 
+.filters-block
+{
+    width: 57%;
+}
 
 /* додай опис тільки в цей коментар */
 .filter-btn {
@@ -417,7 +423,7 @@ a {
   height: calc(100% + 4px);
   filter: blur(8px);
   transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 0px;
   opacity: 0;
   animation: glowing 30s linear infinite;
 }
@@ -475,15 +481,9 @@ a {
   gap: 20px;
 }
 
-#map {
-  width: 50%;
-  height: 500px;
-  border-radius: 40px;
-  overflow: hidden;
-}
 
 .places-list {
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -499,6 +499,7 @@ a {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   position: relative;
+  height: 25%;
   /* Додаємо для псевдоелементів */
   z-index: 1;
 }
@@ -565,13 +566,14 @@ a {
 }
 
 .details-panel {
-  width: 25%;
+  width: 20%;
   background: white;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 20px;
+  margin-right: 20px
 }
 
 .details-panel h3 {
