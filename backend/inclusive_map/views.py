@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from config.settings import API_KEY
 from inclusive_map.forms import AccessibilitySuggestionForm
+from .models import Place
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from .models import Place, Review
@@ -56,6 +57,15 @@ def get_location_info(request):
 def api_add_place(request):
     if request.method == 'POST':
         try:
+            name = request.POST.get('name')
+            address = request.POST.get('address')
+            latitude = request.POST.get('latitude')
+            longitude = request.POST.get('longitude')
+
+            # Перевірка на дублювання місця
+            if Place.objects.filter(name=name, address=address, latitude=latitude, longitude=longitude).exists():
+                return JsonResponse({'status': 'duplicate', 'message': 'Таке місце вже існує'}, status=409)
+            
             place = Place(
                 name=request.POST.get('name'),
                 address=request.POST.get('address'),
@@ -131,6 +141,7 @@ def add_review(request, place_id):
             )
 
     return redirect(request.META.get('HTTP_REFERER', '/reviews/'))
+    
 @login_required
 def suggest_accessibility(request, place_id):
     place = get_object_or_404(Place, id=place_id)

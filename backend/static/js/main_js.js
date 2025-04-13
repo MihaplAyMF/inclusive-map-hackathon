@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     return filters;
   }
- 
-// === Завантажити фільтровані місця ===
+
+  // === Завантажити фільтровані місця ===
   function fetchFilteredPlaces() {
     const filters = getActiveFilters();
     fetch('/filter-places/', {
@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (searchButton) {
     searchButton.addEventListener('click', () => {
       const searchInput = document.querySelector('.search-bar input');
-
       if (!searchInput) return;
 
       const query = searchInput.value;

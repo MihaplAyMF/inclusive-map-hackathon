@@ -1,0 +1,92 @@
+[
+{
+  "model": "users.customuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$9eQsXZTEggxSypBx1JOoe5$1J/X9VQQcKPeJHWwEbcfQUlFRoA12Jdv53d7XPJskBM=",
+    "last_login": "2025-04-13T18:44:17.628Z",
+    "is_superuser": true,
+    "username": "roman",
+    "email": "roman@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-12T10:23:21.050Z",
+    "bio": "",
+    "first_name": "Roman",
+    "last_name": "Chyshyn",
+    "has_special_needs": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$MImr6dLmfL36BKCOX0sNJJ$8Uq9E0wCTrM7CcBBmOfuCu0SRz9qlDiFg/PgTqMioeM=",
+    "last_login": "2025-04-13T18:38:08.279Z",
+    "is_superuser": false,
+    "username": "User_123",
+    "email": "User_123@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-12T10:35:43Z",
+    "bio": "",
+    "first_name": "Вася",
+    "last_name": "Пупкін",
+    "has_special_needs": true,
+    "groups": [],
+    "user_permissions": [
+      33,
+      34,
+      35,
+      36,
+      21,
+      22,
+      23,
+      24
+    ]
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$oPVaI9nu5a8AUhSM6247q5$BXs/d/SQUU39PbOY1z5OuAQX+LPEaLCrWrufyB1fSHY=",
+    "last_login": "2025-04-13T06:39:55.944Z",
+    "is_superuser": false,
+    "username": "Test_user",
+    "email": "User_123@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-13T06:39:55.133Z",
+    "bio": null,
+    "first_name": null,
+    "last_name": null,
+    "has_special_needs": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+
+{
+  "model": "users.customuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$G9HxmC1jcrgY29iR0oRoMY$p4RzoE2rwECgdHbnnFPmDlBV2+EbW6XswIfFZ3zKcNs=",
+    "last_login": "2025-04-13T18:43:34.240Z",
+    "is_superuser": false,
+    "username": "Test_user_1",
+    "email": "User_mail@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-13T18:43:33.294Z",
+    "bio": null,
+    "first_name": null,
+    "last_name": null,
+    "has_special_needs": true,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

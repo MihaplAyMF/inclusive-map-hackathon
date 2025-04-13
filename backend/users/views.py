@@ -1,12 +1,15 @@
 # users/views.py
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
-from inclusive_map.models import AccessibilitySuggestion, Place
-from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib import auth, messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render
+from django.contrib import messages
 from django.urls import reverse
+
+from inclusive_map.models import AccessibilitySuggestion, Place
 from .forms import ProfileUpdateForm, RegisterForm
+from django.contrib import auth, messages
 
 def home(request):
     return render(request, 'base.html')
@@ -42,11 +45,6 @@ def login_view(request):
     return render(request, 'users/login.html')
 
 @login_required
-def logout_view(request):
-    messages.success(request, f'{request.user.username}, Ви вийшли з акаунта')
-    auth.logout(request)
-    return redirect('home')
-
 def profile_view(request):
     user = request.user
 
@@ -66,3 +64,9 @@ def profile_view(request):
         'user_places': user_places,
         'user_suggestions': user_suggestions
     })
+
+@login_required
+def logout(request):
+    messages.success(request, f'{request.user.username}, Ви вийшли з акаунта')
+    auth.logout(request)
+    return redirect('home')

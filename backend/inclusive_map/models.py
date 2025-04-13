@@ -20,6 +20,7 @@ class Place(models.Model):
     total_reviews = models.PositiveIntegerField(default=0)
 
     image = models.ImageField(upload_to='places/', blank=True, null=True)
+
     created_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='places')
 
     def average_rating(self):

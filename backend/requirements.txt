@@ -11,3 +11,4 @@ tzdata==2025.2
 psycopg[binary]==3.2.2
 requests==2.32.3
 Pillow>=8.0.0
+

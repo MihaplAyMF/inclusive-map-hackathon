@@ -1,0 +1,178 @@
+[
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 1,
+  "fields": {
+    "place": 2,
+    "user": 1,
+    "has_ramp": false,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:09:56.506Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 2,
+  "fields": {
+    "place": 1,
+    "user": 1,
+    "has_ramp": false,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:14:39.394Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 3,
+  "fields": {
+    "place": 3,
+    "user": 1,
+    "has_ramp": false,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:17:59.597Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 4,
+  "fields": {
+    "place": 6,
+    "user": 1,
+    "has_ramp": false,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:27:12.669Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 5,
+  "fields": {
+    "place": 4,
+    "user": 1,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:28:04.132Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 6,
+  "fields": {
+    "place": 1,
+    "user": 1,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:31:50.722Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 7,
+  "fields": {
+    "place": 5,
+    "user": 1,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": false,
+    "comment": "",
+    "submitted_at": "2025-04-12T13:47:49.138Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 8,
+  "fields": {
+    "place": 6,
+    "user": 1,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": false,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-12T15:40:11.995Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 9,
+  "fields": {
+    "place": 2,
+    "user": 2,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": true,
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "comment": "",
+    "submitted_at": "2025-04-13T06:37:43.146Z",
+    "status": "pending"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 10,
+  "fields": {
+    "place": 3,
+    "user": 2,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-13T17:46:46.025Z",
+    "status": "approved"
+  }
+},
+{
+  "model": "inclusive_map.accessibilitysuggestion",
+  "pk": 11,
+  "fields": {
+    "place": 7,
+    "user": 2,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": true,
+    "accessible_toilet": false,
+    "easy_entrance": true,
+    "comment": "",
+    "submitted_at": "2025-04-13T18:41:41.275Z",
+    "status": "approved"
+  }
+}
+]

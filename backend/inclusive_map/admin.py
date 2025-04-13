@@ -1,5 +1,6 @@
+# inclusive_map/admin.py
+
 from django.contrib import admin
-from .models import Place, Review
 from .models import AccessibilitySuggestion, Place, Review
 
 @admin.register(Place)

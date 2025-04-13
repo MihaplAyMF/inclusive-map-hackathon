@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.conf.urls.static import static
+
 from django.urls import include, path
+
 from . import views
 
 urlpatterns = [
@@ -11,6 +13,6 @@ urlpatterns = [
     path('routes/', views.route_page, name='route_page'),
     path('reviews/', views.reviews_page, name='reviews'),
     path('reviews/add/<int:place_id>/', views.add_review, name='add_review'),
-    path('users/', include('users.urls')), 
     path('suggest/<int:place_id>/', views.suggest_accessibility, name='suggest_accessibility'),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
