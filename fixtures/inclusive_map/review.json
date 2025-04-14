@@ -1,0 +1,68 @@
+[
+{
+  "model": "inclusive_map.review",
+  "pk": 1,
+  "fields": {
+    "place": 1,
+    "user": 1,
+    "rating": 3,
+    "comment": "Свіже повітря",
+    "created_at": "2025-04-12T11:09:40.534Z"
+  }
+},
+{
+  "model": "inclusive_map.review",
+  "pk": 2,
+  "fields": {
+    "place": 2,
+    "user": 1,
+    "rating": 4,
+    "comment": "Прикольний вигляд",
+    "created_at": "2025-04-12T11:10:33.780Z"
+  }
+},
+{
+  "model": "inclusive_map.review",
+  "pk": 3,
+  "fields": {
+    "place": 2,
+    "user": 1,
+    "rating": 1,
+    "comment": "ФУУУ ФІЗИКА",
+    "created_at": "2025-04-12T11:10:41.755Z"
+  }
+},
+{
+  "model": "inclusive_map.review",
+  "pk": 4,
+  "fields": {
+    "place": 2,
+    "user": 1,
+    "rating": 2,
+    "comment": "НЕМА ТУАЛЕТІВ",
+    "created_at": "2025-04-12T11:10:59.645Z"
+  }
+},
+{
+  "model": "inclusive_map.review",
+  "pk": 5,
+  "fields": {
+    "place": 12,
+    "user": 2,
+    "rating": 5,
+    "comment": "класний котик)))",
+    "created_at": "2025-04-13T18:41:16.958Z"
+  }
+},
+{
+  "model": "inclusive_map.review",
+  "pk": 6,
+  "fields": {
+    "place": 12,
+    "user": 4,
+    "rating": 4,
+    "comment": ")))",
+    "created_at": "2025-04-13T18:43:59.995Z"
+  }
+}
+]

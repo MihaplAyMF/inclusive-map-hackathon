@@ -8,11 +8,12 @@
     "latitude": 49.83842530390878,
     "longitude": 24.020042319548875,
     "has_ramp": true,
-    "has_tactile_elements": false,
+    "has_tactile_elements": true,
     "wheelchair_accessible": true,
     "accessible_toilet": false,
     "easy_entrance": true,
-    "image": "places/завантаження_2_jKLiD4D.jpg"
+    "image": "places/завантаження_2_jKLiD4D.jpg",
+    "created_by": null
   }
 },
 {
@@ -28,7 +29,8 @@
     "wheelchair_accessible": false,
     "accessible_toilet": true,
     "easy_entrance": false,
-    "image": "places/1200px-Бандери_3186_xi2ARNJ.jpg"
+    "image": "places/1200px-Бандери_3186_xi2ARNJ.jpg",
+    "created_by": null
   }
 },
 {
@@ -39,12 +41,13 @@
     "address": "Бандери хз яка",
     "latitude": 49.83513150380875,
     "longitude": 24.00834665335467,
-    "has_ramp": false,
+    "has_ramp": true,
     "has_tactile_elements": true,
     "wheelchair_accessible": true,
     "accessible_toilet": false,
     "easy_entrance": true,
-    "image": "places/2232_KYaQL5X.jpg"
+    "image": "places/2232_KYaQL5X.jpg",
+    "created_by": null
   }
 },
 {
@@ -58,9 +61,10 @@
     "has_ramp": true,
     "has_tactile_elements": true,
     "wheelchair_accessible": true,
-    "accessible_toilet": false,
-    "easy_entrance": true,
-    "image": "places/завантаження_rp3il3J.jpg"
+    "accessible_toilet": true,
+    "easy_entrance": false,
+    "image": "places/завантаження_rp3il3J.jpg",
+    "created_by": null
   }
 },
 {
@@ -72,11 +76,12 @@
     "latitude": 49.8350450039341,
     "longitude": 23.994919674878414,
     "has_ramp": true,
-    "has_tactile_elements": false,
+    "has_tactile_elements": true,
     "wheelchair_accessible": true,
     "accessible_toilet": false,
     "easy_entrance": false,
-    "image": "places/e080c5aeccc6710b73e0353b5f21fe9b_ROOkU0A.jpg"
+    "image": "places/e080c5aeccc6710b73e0353b5f21fe9b_ROOkU0A.jpg",
+    "created_by": null
   }
 },
 {
@@ -89,10 +94,11 @@
     "longitude": 24.031193331467193,
     "has_ramp": true,
     "has_tactile_elements": false,
-    "wheelchair_accessible": true,
+    "wheelchair_accessible": false,
     "accessible_toilet": true,
-    "easy_entrance": false,
-    "image": "places/14800863305838533a897c3_f187a916dc9c2f942a00c80458a89026.jpg"
+    "easy_entrance": true,
+    "image": "places/14800863305838533a897c3_f187a916dc9c2f942a00c80458a89026.jpg",
+    "created_by": null
   }
 },
 {
@@ -103,12 +109,13 @@
     "address": "проспект Шевченка, 7",
     "latitude": 49.83810354550992,
     "longitude": 24.031381305742585,
-    "has_ramp": false,
+    "has_ramp": true,
     "has_tactile_elements": true,
     "wheelchair_accessible": true,
-    "accessible_toilet": true,
+    "accessible_toilet": false,
     "easy_entrance": true,
-    "image": "places/unnamed.jpg"
+    "image": "places/unnamed.jpg",
+    "created_by": null
   }
 },
 {
@@ -124,7 +131,59 @@
     "wheelchair_accessible": true,
     "accessible_toilet": false,
     "easy_entrance": true,
-    "image": "places/2025-03-28.jpg"
+    "image": "places/2025-03-28.jpg",
+    "created_by": null
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 12,
+  "fields": {
+    "name": "Церква Єлизавети",
+    "address": "Городоцька 130",
+    "latitude": 49.83689606747862,
+    "longitude": 24.004781598010535,
+    "has_ramp": true,
+    "has_tactile_elements": true,
+    "wheelchair_accessible": false,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "image": "places/bc7f3e47b0fa2f9af1209f9e80bd4767_wGjdshW.jpg",
+    "created_by": 1
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 15,
+  "fields": {
+    "name": "Приміський",
+    "address": "Городоцька 131",
+    "latitude": 49.836217929058606,
+    "longitude": 23.994408845901493,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": false,
+    "accessible_toilet": false,
+    "easy_entrance": false,
+    "image": "places/Приміський_вокзал_Львів.jpg",
+    "created_by": 2
+  }
+},
+{
+  "model": "inclusive_map.place",
+  "pk": 16,
+  "fields": {
+    "name": "Львівська Національна Опера",
+    "address": "проспект Свободи, 28",
+    "latitude": 49.844202751596804,
+    "longitude": 24.027593135833744,
+    "has_ramp": true,
+    "has_tactile_elements": false,
+    "wheelchair_accessible": false,
+    "accessible_toilet": true,
+    "easy_entrance": true,
+    "image": "places/Львівський_національний_академічний_театр_опери_та_балету_імені_Соломії_Крушельницької_13.jpg",
+    "created_by": 2
   }
 }
 ]
