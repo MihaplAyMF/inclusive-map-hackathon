@@ -13,6 +13,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Toggle debug from environment v
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1').split(',')  # Allow Render's domain
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Application definition
 
 INSTALLED_APPS = [
