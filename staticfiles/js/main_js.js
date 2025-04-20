@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
           fetchFilteredPlaces();
         })
         .catch(() => {
-          document.getElementById('form-status').innerText = 'Помилка під час додавання.';
+          document.getElementById('form-status').innerText = 'Помилка під час додавання. Ви маєте бути авторизовані.';
         });
     });
   }
