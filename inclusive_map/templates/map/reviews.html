@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Відгуки{% endblock %}
+
 {% block content %}
 <div class="reviews-container">
   <h1>Всі місця та відгуки</h1>
@@ -29,7 +30,6 @@
           {% if place.reviews.count > 2 %}
             <button class="show-all-btn" data-place="{{ place.id }}">Показати всі відгуки</button>
           {% endif %}
-
         </div>
 
         <!-- Форма для нового відгуку -->
@@ -45,9 +45,11 @@
           <textarea name="comment" placeholder="Ваш коментар..." required></textarea>
           <button type="submit" class="custom-button">Залишити відгук</button>
         </form>
+
         <a href="{% url 'suggest_accessibility' place.id %}" class="suggest-link">Запропонувати зміни доступності</a>
+
         <!-- Модальне вікно -->
-        <div class="modal" id="modal-{{ place.id }}" style="display:none;">
+        <div class="modal" id="modal-{{ place.id }}">
           <div class="modal-content">
             <span class="close" data-place="{{ place.id }}">&times;</span>
             <h3>Всі відгуки про {{ place.name }}</h3>

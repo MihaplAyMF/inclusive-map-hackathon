@@ -31,14 +31,15 @@ def register_view(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
         
         user = authenticate(request, username=username, password=password)  # аутентифікація
         if user is not None:
             login(request, user)  # використання правильного login
-            return redirect('home')  # перенаправлення на головну після входу
             messages.success(request, f'{username}, Ви успішно ввійшли в акаунт')
+            return redirect('home')  # перенаправлення на головну після входу
         else:
             # Якщо користувача не знайдено або неправильний пароль
             return render(request, 'users/login.html', {'error': 'Невірні дані для входу'})
